@@ -9,6 +9,7 @@ import MenuContainer from "@/components/mycomponents/setup/editdeletebtns";
 import LocalFormatter from "@/components/mycomponents/setup/formatDate";
 import QuickLogButton from "@/components/mycomponents/setup/QuickLogButton";
 import { useNavigation } from "@react-navigation/native";
+import BackButton from "@/components/mycomponents/setup/BackButton";
 
 const FLOW_OPTIONS = ['none', 'light', 'medium', 'heavy'];
 
@@ -417,9 +418,7 @@ const CycleEntriesScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       {/* ✅ Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} >
-        <Text style={styles.cardHeader}>← </Text>
-      </TouchableOpacity>
+      <BackButton />
       {/* Add New Entry Button */}
 
       <View style={styles.buttonContainer}>

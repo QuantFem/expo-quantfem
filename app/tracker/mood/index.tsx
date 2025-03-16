@@ -15,6 +15,7 @@ import i18n from "@/components/mycomponents/setup/localization/localization";
 import MenuContainer from "@/components/mycomponents/setup/editdeletebtns";
 import LocalFormatter from "@/components/mycomponents/setup/formatDate";
 import { useNavigation } from "@react-navigation/native";
+import BackButton from "@/components/mycomponents/setup/BackButton";
 
 
 // Predefined emoji options with their meanings
@@ -148,9 +149,7 @@ const MoodJournalScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       {/* ✅ Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} >
-        <Text style={styles.cardHeader}>← </Text>
-      </TouchableOpacity>
+      <BackButton />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}

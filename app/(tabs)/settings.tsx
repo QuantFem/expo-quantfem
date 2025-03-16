@@ -9,7 +9,6 @@ import {
   TextInput,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Picker } from "@react-native-picker/picker"; // ✅ Import Picker
 import DropDownPicker from "react-native-dropdown-picker";
 import useBiometricAuth from "@/components/mycomponents/BiometricAuth";
 import { exportData } from "../history/exportData";
@@ -28,7 +27,7 @@ const SettingsScreen: React.FC = () => {
   const styles = useThemedStyles(); // ✅ Automatically gets updated styles
 
   const [darkMode, setDarkMode] = useState<"system" | "blue" | "green" | "purple" | "light" | "dark">("system");
-  const [dailySummariesEnabled, setDailySummariesEnabled] = useState(false);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [reminderDurations, setReminderDurations] = useState<{ [key: string]: string }>({});
   const [tempReminderDurations, setTempReminderDurations] = useState<{ [key: string]: string }>({});
   const [modalVisible, setModalVisible] = useState(false);
@@ -61,25 +60,20 @@ const SettingsScreen: React.FC = () => {
     await AsyncStorage.setItem("appLanguage", lang);
   };
 
-
   useEffect(() => {
-    requestNotificationPermission();
     loadSettings();
   }, []);
 
   const loadSettings = async () => {
     const savedMode = await AsyncStorage.getItem("themeMode");
-    if (savedMode) setDarkMode(savedMode as "system" | "light" | "dark" | "blue" | "green" | "purple"); // ✅ Added "custom"
+    if (savedMode) setDarkMode(savedMode as "system" | "light" | "dark" | "blue" | "green" | "purple");
+
+    const notificationsStatus = await AsyncStorage.getItem("notificationsEnabled");
+    setNotificationsEnabled(notificationsStatus === "true");
 
     const savedDurations = JSON.parse(await AsyncStorage.getItem("reminderDurations") || "{}");
     setReminderDurations(savedDurations);
 
-    const savedSummaries = await AsyncStorage.getItem("dailySummariesEnabled");
-    if (savedSummaries !== null) {
-      setDailySummariesEnabled(savedSummaries === "true");
-    }
-
-    // Load language settings
     const savedLanguage = await AsyncStorage.getItem("appLanguage");
     if (savedLanguage) {
       (i18n as any).locale = savedLanguage;
@@ -87,27 +81,29 @@ const SettingsScreen: React.FC = () => {
     }
   };
 
-  const changeTheme = async (value: "system" | "light" | "dark" | "blue" | "green" | "purple") => { // ✅ Added "custom"
+  const changeTheme = async (value: "system" | "light" | "dark" | "blue" | "green" | "purple") => {
     setDarkMode(value);
     await AsyncStorage.setItem("themeMode", value);
   };
 
+  const toggleNotifications = async (value: boolean) => {
+    setNotificationsEnabled(value);
+    await AsyncStorage.setItem("notificationsEnabled", value.toString());
+    if (value) {
+      await requestNotificationPermission();
+    }
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
-
         {/* Notifications Section */}
         <Text style={[styles.cardHeader]}>{i18n.t("SETTINGS.NOTIFICATIONS.TITLE")}</Text>
         <View style={styles.rowContainer}>
-          <Text style={styles.text}>{i18n.t("SETTINGS.NOTIFICATIONS.DAILY_SUMMARIES")}</Text>
+          <Text style={styles.text}>{i18n.t("SETTINGS.NOTIFICATIONS.ENABLE")}</Text>
           <Switch
-            value={dailySummariesEnabled}
-            onValueChange={(value) => {
-              setDailySummariesEnabled(value);
-              AsyncStorage.setItem("dailySummariesEnabled", value.toString());
-              if (value) setModalVisible(true);
-            }}
+            value={notificationsEnabled}
+            onValueChange={toggleNotifications}
           />
         </View>
 
@@ -125,7 +121,7 @@ const SettingsScreen: React.FC = () => {
             }}
             style={{ backgroundColor: "white" }}
             dropDownContainerStyle={{ backgroundColor: "white" }}
-            listMode="SCROLLVIEW" // ✅ Prevents VirtualizedList nesting issue
+            listMode="SCROLLVIEW"
           />
         </View>
 
@@ -143,20 +139,16 @@ const SettingsScreen: React.FC = () => {
             }}
             style={{ backgroundColor: "white" }}
             dropDownContainerStyle={{ backgroundColor: "white" }}
-            listMode="SCROLLVIEW" // ✅ Prevents VirtualizedList nesting issue
+            listMode="SCROLLVIEW"
           />
         </View>
 
-
-
-        {/**Toggle For Instructions */}
+        {/* Instructions Toggle */}
         <View style={styles.rowContainer}>
           <Text style={styles.text}>{i18n.t("HOMEPAGE.ACTIVITY.SHOW_HELP")}</Text>
           <Switch
             value={showInstructions}
-            onValueChange={() => {
-              toggleInstructions(); // ✅ Calls toggle function directly
-            }}
+            onValueChange={toggleInstructions}
           />
         </View>
 
@@ -222,7 +214,6 @@ const SettingsScreen: React.FC = () => {
         </View>
       </Modal>
     </View>
-
   );
 };
 

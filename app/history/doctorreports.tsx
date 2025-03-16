@@ -6,15 +6,16 @@ import {shareAsync} from 'expo-sharing';
 import useThemedStyles from '@/components/hooks/useThemedStyles';
 import i18n from '@/components/mycomponents/setup/localization/localization';
 import LocalFormatter from '@/components/mycomponents/setup/formatDate';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import BackButton from '@/components/mycomponents/setup/BackButton';
 
 
 const DoctorReports: React.FC=() => {
   const [calendarItems,setCalendarItems]=useState<CalendarItem[]>([]);
   const [isLoading,setIsLoading]=useState(true);
   const styles=useThemedStyles();
-    const navigation = useNavigation();
-  
+  const navigation=useNavigation();
+
 
   useEffect(() => {
     loadCalendarData();
@@ -139,15 +140,15 @@ const DoctorReports: React.FC=() => {
       }
     });
 
-    report['cycle'] = [
-      i18n.t("HISTORY.DR_REPORTS.REPORT_ENTRIES.CYCLE_START", {
-        date: cycleStartDate ? LocalFormatter({ date: cycleStartDate }) : i18n.t('COMMON.NA')
+    report['cycle']=[
+      i18n.t("HISTORY.DR_REPORTS.REPORT_ENTRIES.CYCLE_START",{
+        date: cycleStartDate? LocalFormatter({date: cycleStartDate}):i18n.t('COMMON.NA')
       }),
-      i18n.t("HISTORY.DR_REPORTS.REPORT_ENTRIES.CYCLE_END", {
-        date: cycleEndDate ? LocalFormatter({ date: cycleEndDate }) : i18n.t('COMMON.NA')
+      i18n.t("HISTORY.DR_REPORTS.REPORT_ENTRIES.CYCLE_END",{
+        date: cycleEndDate? LocalFormatter({date: cycleEndDate}):i18n.t('COMMON.NA')
       })
     ];
-    
+
 
 
 
@@ -241,11 +242,8 @@ const DoctorReports: React.FC=() => {
   return (
     <ScrollView style={styles.scrollContainer}>
       <View style={styles.container}>
-{/* ✅ Back Button */}
-          <TouchableOpacity onPress={() => navigation.goBack()} >
-            <Text style={styles.cardHeader}>← </Text>
-          </TouchableOpacity>
-          
+        <BackButton />
+
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={[styles.button]} onPress={generatePDF}>
             <Text style={styles.buttonText}>{i18n.t("HISTORY.DR_REPORTS.SHARE_BUTTON")}</Text>

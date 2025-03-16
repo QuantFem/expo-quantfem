@@ -1,4 +1,3 @@
-
 export const EN_STRINGS = {
 
     // Keep existing translations...
@@ -8,14 +7,36 @@ export const EN_STRINGS = {
         ACTIVITY: {
             TITLE: "Today's Activity",
             NO_ACTIVITY: "No activity logged today. Start tracking below!",
-            QUICK_HINT: "Tap any button to log your activity instantly with a timestamp. For detailed tracking and history, head to the Tracker section.",
+        
+            QUICK_HINT: "Tap a button to instantly log an activity with the current time.\n" +
+                        "For example, if you tap 'Tea,' it means you just drank tea.\n" +
+                        "If you log 'Painkiller,' it means you took one now, and the next dose will be scheduled in 6 hours\n" +
+                        "(visible in Today's Activities).\n\n" +
+                        "For detailed logs like medication doses, symptoms, or nutrition, use the Tracker section.",
+        
             UPCOMING: "Upcoming:",
-            HOME_HINT: "Tap any button to log your activity instantly. Check trackers for detailed history.",
-            TRACKERS_HINT: "Click a tracker to view, edit, or delete an entry. Use 'Quick Log' to duplicate with today's date.",
-            CALENDAR_HINT: "View your data in a calendar format. Click on any date to see your tracked entries.",
-            SETTINGS_HINT: "Customize your app experience. Adjust themes, notifications, and preferences.",
+        
+            HOME_HINT: "Tap a button to log your activity instantly.\n" +
+                       "Check the Trackers section for a full history.",
+        
+            TRACKERS_HINT: "Use trackers for detailed logs with full control.\n" +
+                           "View, edit, or delete past entries.\n\n" +
+                           "For recurring activities (e.g., eating the same meal),\n" +
+                           "tap the quick log button instead of re-entering details manually.",
+        
+            CALENDAR_HINT: "See all your logged activities in a calendar format.\n" +
+                           "Tap any date to view past entries.",
+        
+            SETTINGS_HINT: "Customize your experience:\n" +
+                           "- Change themes, notifications, and preferences.\n" +
+                           "- Generate reports for doctor visits.\n" +
+                           "- Export data for backup (e.g., Google Drive) or import past records.\n" +
+                           "- Secure the app with biometrics.\n" +
+                           "- Access educational resources on our website, AI features, or adjust notifications.",
+        
             SHOW_HELP: "Show Help Tooltips",
         },
+        
 
 
         // Menstrual Care Section
@@ -64,6 +85,12 @@ export const EN_STRINGS = {
             CANCEL_BUTTON: "Cancel",
             CONFIRM_LOG_BUTTON: "Yes, Log It",
 
+            DECREMENT_TITLE: "Decrement Activity",
+            DECREMENT_MESSAGE: "Are you sure you want to reduce the count for \"{{action}}\"?",
+            DECREMENT_CONFIRM: "Remove Last Entry",
+            DECREMENT_SUCCESS: "Activity count reduced.",
+            DECREMENT_ERROR: "Failed to reduce activity count.",
+
             REMINDER: "Reminder to {{action}}!",
             REMIND_LATER_BUTTON: "Remind Me Later", // ✅ Added missing button
             SET_REMINDER_TITLE: "Set Reminder",
@@ -102,6 +129,19 @@ export const EN_STRINGS = {
             DRANK_TEA: "Drank Tea",
             PEED: "Peed",
             POOPED: "Pooped",
+        },
+
+        ACTION_VERBS: {
+            PEED: "pee",
+            POOPED: "poo",
+            DRANK_WATER: "drink water",
+            DRANK_COFFEE: "drink coffee",
+            DRANK_TEA: "drink tea",
+            TOOK_PAINKILLER: "take a painkiller",
+            CHANGED_TAMPON: "change your tampon",
+            CHANGED_PAD: "change your pad",
+            CHANGED_CUP: "change your menstrual cup",
+            CHANGED_UNDERWEAR: "change your period underwear",
         },
     },
     CALENDAR: {
@@ -148,8 +188,8 @@ export const EN_STRINGS = {
             SLANG: "Gen Z Slang",
         },
         NOTIFICATIONS: {
-            TITLE: "General Notifications",
-            DAILY_SUMMARIES: "Daily Summaries",
+            TITLE: "Notifications",
+            ENABLE: "Enable Notifications",
         },
 
         APPEARANCE: {

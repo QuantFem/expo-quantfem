@@ -7,6 +7,7 @@ import MenuContainer from "@/components/mycomponents/setup/editdeletebtns";
 import i18n from "@/components/mycomponents/setup/localization/localization";
 import QuickLogButton from "@/components/mycomponents/setup/QuickLogButton";
 import { useNavigation } from "@react-navigation/native";
+import BackButton from "@/components/mycomponents/setup/BackButton";
 
 
 
@@ -228,9 +229,7 @@ const ActivityEntriesScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       {/* ✅ Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} >
-        <Text style={styles.cardHeader}>← </Text>
-      </TouchableOpacity>
+      <BackButton />
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity

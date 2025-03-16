@@ -4,6 +4,7 @@ import { enableLayoutAnimations } from "react-native-reanimated";
 import MedicationsScreen from './medication';
 import useThemedStyles from '@/components/hooks/useThemedStyles';
 import { useNavigation } from '@react-navigation/native';
+import BackButton from '@/components/mycomponents/setup/BackButton';
 
 enableLayoutAnimations(true);
 
@@ -41,9 +42,7 @@ const MedicationTabs = () => {
   return (
     <View style={styles.container}>
       {/* ✅ Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} >
-        <Text style={styles.cardHeader}>← </Text>
-      </TouchableOpacity>
+      <BackButton />
       {renderViewModeSelector()}
       <MedicationsScreen activeTab={viewMode.toUpperCase() as "ACTIVE" | "STOPPED"} />
     </View>

@@ -13,7 +13,6 @@ interface HistoryEntry {
 }
 
 const HistoryLog: React.FC=() => {
-  const [history,setHistory]=useState<{[key: string]: HistoryEntry[]}>({});
 
   const [historyList,setHistoryList]=useState<[string,HistoryEntry[]][]>([]);
   const [loadedCount,setLoadedCount]=useState(10);
@@ -115,10 +114,9 @@ const HistoryLog: React.FC=() => {
           </View>
         );
       }}
-      onEndReached={loadMoreItems} // ✅ Loads more when scrolling
+      onEndReached={loadMoreItems} 
       onEndReachedThreshold={0.5}
 
-      // ✅ Handles empty list case
       ListEmptyComponent={
         <Text style={styles.textSmall}>{i18n.t("COMMON.NA")}</Text>
       }

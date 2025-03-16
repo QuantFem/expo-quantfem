@@ -8,6 +8,7 @@ import MenuContainer from "@/components/mycomponents/setup/editdeletebtns";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import QuickLogButton from "@/components/mycomponents/setup/QuickLogButton";
 import { useNavigation } from "@react-navigation/native";
+import BackButton from "@/components/mycomponents/setup/BackButton";
 
 const SymptomEntriesScreen: React.FC = () => {
   // Base state
@@ -208,10 +209,7 @@ const SymptomEntriesScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      {/* ✅ Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} >
-        <Text style={styles.cardHeader}>← </Text>
-      </TouchableOpacity>
+      
       {/* Header Section */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -246,6 +244,8 @@ const SymptomEntriesScreen: React.FC = () => {
         }
       />
 
+      {/* ✅ Back Button */}
+      <BackButton />
 
       <Modal
         visible={isModalVisible}
@@ -409,7 +409,6 @@ const SymptomEntriesScreen: React.FC = () => {
                         : setNewSymptom({ ...newSymptom, notes: text })
                     }
                     multiline
-                    placeholder={i18n.t("GENERAL_TRACKER.MODAL.ENTER_NOTES")}
                   />
                 </View>
               </ScrollView>

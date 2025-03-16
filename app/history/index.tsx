@@ -5,24 +5,18 @@ import HistoryLog from './dailyhistory';
 import AllTrackerData from './trackhistory';
 import useThemedStyles from '@/components/hooks/useThemedStyles';
 import i18n from '@/components/mycomponents/setup/localization/localization';
+import BackButton from '@/components/mycomponents/setup/BackButton';
 
 const TabsComponent = () => {
   const [viewMode, setViewMode] = useState('HISTORY.TABS.DAILY');
   const styles = useThemedStyles();
-  const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}> {/* ✅ Fixes iOS notch issue */}
+    <SafeAreaView style={{ flex: 1 }}> 
       <View style={styles.container}>
         
-        {/* ✅ Back Button */}
-        <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
-          <TouchableOpacity onPress={() => navigation.goBack()} >
-            <Text style={styles.title}>← </Text>
-          </TouchableOpacity>
-        </View>
+        <BackButton/>
 
-        {/* View Mode Selection */}
         <View style={styles.buttonContainer}>
           {['HISTORY.TABS.DAILY', 'HISTORY.TABS.TRACKER'].map((mode) => (
             <TouchableOpacity
@@ -43,7 +37,6 @@ const TabsComponent = () => {
           ))}
         </View>
 
-        {/* Content */}
         {viewMode === 'HISTORY.TABS.DAILY' ? <HistoryLog /> : <AllTrackerData />}
       </View>
     </SafeAreaView>

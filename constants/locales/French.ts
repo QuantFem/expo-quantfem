@@ -1,16 +1,42 @@
 export const FR_STRINGS={
   HOMEPAGE: {
     ACTIVITY: {
-      TITLE: "Activité du jour",
-      NO_ACTIVITY: "Aucune activité enregistrée aujourd’hui. Commencez le suivi ci-dessous !",
-      QUICK_HINT: "Appuyez sur un bouton pour enregistrer votre activité en un instant. Allez dans Trackers pour plus de détails.",
+      TITLE: "Activité du Jour",
+      NO_ACTIVITY: "Aucune activité enregistrée aujourd'hui. Commencez à suivre ci-dessous !",
+      QUICK_HINT: "Appuyez sur un bouton pour enregistrer instantanément une activité avec l'heure actuelle.\n" +
+                 "Par exemple, si vous appuyez sur 'Thé', cela signifie que vous venez de boire du thé.\n" +
+                 "Si vous enregistrez 'Antidouleur', cela signifie que vous l'avez pris maintenant, et la prochaine dose sera programmée dans 6 heures\n" +
+                 "(visible dans les Activités du Jour).\n\n" +
+                 "Pour des enregistrements détaillés comme les doses de médicaments, les symptômes ou la nutrition, utilisez la section Suivi.",
       UPCOMING: "À venir :",
-      HOME_HINT: "Appuyez sur un bouton pour suivre rapidement. Consultez Trackers pour plus d'infos.",
-      TRACKERS_HINT: "Sélectionnez un suivi pour modifier, supprimer ou dupliquer une entrée. Quick Log ajoute avec la date d’aujourd’hui.",
-      CALENDAR_HINT: "Affichez vos données sous forme de calendrier. Cliquez sur une date pour voir vos suivis.",
-      SETTINGS_HINT: "Personnalisez votre expérience : thème, notifications, et préférences.",
-      SHOW_HELP: "Afficher les info-bulles d'aide",
-  },
+      HOME_HINT: "Appuyez sur un bouton pour enregistrer votre activité instantanément.\n" +
+                "Consultez la section Suivi pour un historique complet.",
+      TRACKERS_HINT: "Utilisez les suivis pour des enregistrements détaillés avec un contrôle total.\n" +
+                    "Voir, modifier ou supprimer les entrées précédentes.\n\n" +
+                    "Pour les activités récurrentes (par exemple, manger le même repas),\n" +
+                    "appuyez sur le bouton d'enregistrement rapide au lieu de ressaisir les détails manuellement.",
+      CALENDAR_HINT: "Voyez toutes vos activités enregistrées au format calendrier.\n" +
+                    "Appuyez sur une date pour voir les entrées précédentes.",
+      SETTINGS_HINT: "Personnalisez votre expérience :\n" +
+                    "- Changez les thèmes, les notifications et les préférences.\n" +
+                    "- Générez des rapports pour les visites médicales.\n" +
+                    "- Exportez les données pour sauvegarde (ex. Google Drive) ou importez des enregistrements passés.\n" +
+                    "- Sécurisez l'application avec la biométrie.\n" +
+                    "- Accédez aux ressources éducatives sur notre site web, aux fonctionnalités IA ou ajustez les notifications.",
+      SHOW_HELP: "Afficher l'Aide",
+      ACTION_VERBS: {
+        PEED: "faire pipi",
+        POOPED: "aller à la selle",
+        DRANK_WATER: "boire de l'eau",
+        DRANK_COFFEE: "boire du café",
+        DRANK_TEA: "boire du thé",
+        TOOK_PAINKILLER: "prendre un antidouleur",
+        CHANGED_TAMPON: "changer votre tampon",
+        CHANGED_PAD: "changer votre serviette hygiénique",
+        CHANGED_CUP: "changer votre coupe menstruelle",
+        CHANGED_UNDERWEAR: "changer vos sous-vêtements menstruels",
+      },
+    },
   
   
   
@@ -69,7 +95,11 @@ export const FR_STRINGS={
     ],
   },
   SETTINGS: {
-    NOTIFICATIONS: {TITLE: "Notifications générales",DAILY_SUMMARIES: "Résumés quotidiens"},
+    NOTIFICATIONS: {
+      TITLE: "Notifications",
+      ENABLE: "Activer les notifications",
+      DAILY_SUMMARIES: "Résumés quotidiens",
+    },
     LANGUAGE: {
       TITLE: "Langue",
       SELECT: "Sélectionner la langue",

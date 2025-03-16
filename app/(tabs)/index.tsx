@@ -67,7 +67,7 @@ const HomeScreen: React.FC=() => {
       Alert.alert(
         i18n.t("HOMEPAGE.NOTIFICATIONS.SCHEDULED_TITLE"),
         i18n.t("HOMEPAGE.NOTIFICATIONS.SCHEDULED_MESSAGE",{
-          action: action,
+          action: formattedAction,
           nextReminder,
         }),
         [
@@ -182,23 +182,29 @@ const HomeScreen: React.FC=() => {
     );
 
     Alert.alert(
-      "Decrement Activity",
-      `Are you sure you want to reduce the count for "${action}"?`,
+      i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_TITLE"),
+      i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_MESSAGE", { action: action }),
       [
-        {text: "Cancel",style: "cancel"},
+        { text: i18n.t("HOMEPAGE.NOTIFICATIONS.CANCEL_BUTTON"), style: "cancel" },
         {
-          text: "Remove Last Entry",
+          text: i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_CONFIRM"),
           style: "destructive",
           onPress: async () => {
-            const success=await deleteHistoryEntry(entryToDelete.id);
+            const success = await deleteHistoryEntry(entryToDelete.id);
 
-            if(success) {
+            if (success) {
               setHistory((prevHistory) =>
-                prevHistory.filter((entry) => entry.id!==entryToDelete.id)
+                prevHistory.filter((entry) => entry.id !== entryToDelete.id)
               );
-              Alert.alert("Success","Activity count reduced.");
+              Alert.alert(
+                i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_TITLE"),
+                i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_SUCCESS")
+              );
             } else {
-              Alert.alert("Error","Failed to reduce activity count.");
+              Alert.alert(
+                i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_TITLE"),
+                i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_ERROR")
+              );
             }
           },
         },

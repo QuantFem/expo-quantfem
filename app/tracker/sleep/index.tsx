@@ -10,6 +10,7 @@ import LocalFormatter from "@/components/mycomponents/setup/formatDate";
 import QuickLogButton from "@/components/mycomponents/setup/QuickLogButton";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from "@react-navigation/native";
+import BackButton from "@/components/mycomponents/setup/BackButton";
 
 
 const SleepEntriesScreen: React.FC = () => {
@@ -232,9 +233,7 @@ const SleepEntriesScreen: React.FC = () => {
     <View style={styles.container}>
 
       {/* ✅ Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} >
-        <Text style={styles.cardHeader}>← </Text>
-      </TouchableOpacity>
+      <BackButton />
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity

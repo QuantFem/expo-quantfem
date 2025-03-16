@@ -76,42 +76,45 @@ const AllTrackerData: React.FC=() => {
                     return null;
                   }
 
-                  // ✅ Format key using translation
+                  
                   const formattedKey=i18n.t(`LABELS.${key.toUpperCase().replace(/_/g,'')}`)||
                     key.replace(/([A-Z])/g,' $1').replace(/_/g,' ').replace(/\b\w/g,(char) => char.toUpperCase()).trim();
 
                   let formattedValue;
 
-                  // ✅ Special handling for frequency
+                  
                   if(key.toLowerCase()==='frequency'&&typeof value==='string') {
                     try {
                       const parsedFrequency=JSON.parse(value);
                       formattedValue=`${parsedFrequency.value} / ${parsedFrequency.value===1? parsedFrequency.unit.slice(0,-1):parsedFrequency.unit}`;
                     } catch(error) {
-                      formattedValue=value; // Fallback if parsing fails
+                      formattedValue=value; 
                     }
                   }
 
-                  // ✅ Handle night wakeups which is an array that has time and reason, similar to frequency
                   else if(key.toLowerCase()==='nightwakeups'&&typeof value==='string') {
                     try {
                       const parsedNighties=JSON.parse(value);
-                      formattedValue=parsedNighties
-                        .map((nightie: {time: string; reason: string}) => `${nightie.time} - ${nightie.reason}`)
-                        .join('\n'); // ✅ Add newline for better readability
+                      formattedValue = (
+                        <View>
+                          {parsedNighties.map((nightie: {time: string; reason: string}, index: number) => (
+                            <Text key={index}>
+                              {`${nightie.time} - ${nightie.reason}`}
+                            </Text>
+                          ))}
+                        </View>
+                      );
                     } catch(error) {
-                      formattedValue=value; // ✅ Fallback if parsing fails
+                      formattedValue=<Text>{value}</Text>; 
                     }
                   }
 
 
 
-                  // ✅ Format timestamps correctly
                   else if(typeof value==='string'&&!isNaN(Date.parse(value))) {
                     formattedValue=LocalFormatter({date: new Date(value),includeTime: true,timeFormat: '12h'});
                   }
 
-                  // ✅ Default conversion
                   else {
                     formattedValue=String(value);
                   }

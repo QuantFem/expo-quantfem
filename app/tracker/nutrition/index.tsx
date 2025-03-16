@@ -21,6 +21,7 @@ import MenuContainer from "@/components/mycomponents/setup/editdeletebtns";
 import QuickLogButton from "@/components/mycomponents/setup/QuickLogButton";
 import { useNavigation } from "@react-navigation/native";
 import DropDownPicker from "react-native-dropdown-picker";
+import BackButton from "@/components/mycomponents/setup/BackButton";
 
 const NutritionEntriesScreen: React.FC = () => {
   // State management
@@ -265,9 +266,7 @@ const NutritionEntriesScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       {/* ✅ Back Button */}
-      <TouchableOpacity onPress={() => navigation.goBack()} >
-        <Text style={styles.cardHeader}>← </Text>
-      </TouchableOpacity>
+      <BackButton />
       {/* Header Section */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity

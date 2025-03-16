@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 type ThemeMode = "light" | "dark" | "blue" | "green" | "purple";
 
 export function useCustomColorScheme(): ThemeMode {
-  const [theme, setTheme] = useState<ThemeMode>(Appearance.getColorScheme() as ThemeMode ?? "light");
+  const [theme, setTheme] = useState<ThemeMode>("purple");
 
   useEffect(() => {
     const loadTheme = async () => {
@@ -13,7 +13,7 @@ export function useCustomColorScheme(): ThemeMode {
       if (savedTheme && ["light", "dark", "blue", "green", "purple"].includes(savedTheme)) {
         setTheme(savedTheme as ThemeMode);
       } else {
-        setTheme(Appearance.getColorScheme() as ThemeMode ?? "light");
+        setTheme("purple");
       }
     };
 

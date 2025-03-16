@@ -1,15 +1,29 @@
 export const SL_STRINGS={
   HOMEPAGE: {
     ACTIVITY: {
-      TITLE: "Today's Vibes",
-      NO_ACTIVITY: "Nada logged today, get on it!",
-      QUICK_HINT: "Smash a button to log it real quick. Hit up Trackers for the deep dive.",
-      UPCOMING: "What’s Next:",
-      HOME_HINT: "Tap any button to log your moves fast. Peep Trackers for details.",
-      TRACKERS_HINT: "Click a tracker to edit, delete, or dupe an entry. Quick Log keeps it fresh.",
-      CALENDAR_HINT: " Click a day to peep your logs in calendar mode.",
-      SETTINGS_HINT: "Tweak your app style, vibes, and notifs.",
-      SHOW_HELP: "Show Help Tooltips 🔍",
+      TITLE: "Today's Vibes 📱",
+      NO_ACTIVITY: "No activity logged today. Start tracking below! 👇",
+      QUICK_HINT: "Hit any button to log stuff instantly with current time ⚡\n" +
+                  "Like, if you tap 'Tea', it means you just sipped that tea rn 🍵\n" +
+                  "If you log 'Painkiller', means you just popped one, and next dose reminder drops in 6 hrs\n" +
+                  "(check Today's Vibes section) 👀\n\n" +
+                  "For the detailed stuff like med doses, symptoms, or food diary, hit up the Tracker section 📝",
+      UPCOMING: "Coming Up Next 🔜",
+      HOME_HINT: "Smash any button to log your moves instantly ⚡\n" +
+                "Check the Trackers section for the full tea 📖",
+      TRACKERS_HINT: "Use trackers for the detailed logs with full control 🎮\n" +
+                    "Peep, edit, or yeet past entries 📱\n\n" +
+                    "For repeat activities (like eating the same meal),\n" +
+                    "just hit the quick log button instead of typing everything again 💅",
+      CALENDAR_HINT: "See all your logged activities in calendar mode 📅\n" +
+                    "Tap any date to see what went down ⏪",
+      SETTINGS_HINT: "Customize your vibe 🎨\n" +
+                    "- Switch up themes, notifs, and your preferences 🎭\n" +
+                    "- Get reports ready for the doc 👩‍⚕️\n" +
+                    "- Save your data (like to Google Drive) or bring back old logs 💾\n" +
+                    "- Lock it down with face/finger scan 🔒\n" +
+                    "- Get the knowledge from our website, AI features, or tweak your notifs 🤖",
+      SHOW_HELP: "Show Help Tips 💡",
     },
 
 
@@ -22,8 +36,13 @@ export const SL_STRINGS={
       CONFIRM_TITLE: "You Sure?",
       CONFIRM_MESSAGE: "Fr, you wanna log {{action}}?",
       CANCEL_BUTTON: "Nah",
-      CONFIRM_LOG_BUTTON: "Yeet It",
-      REMINDER: "Yo, don't forget to {{action}}!",
+      CONFIRM_LOG_BUTTON: "Yeah, Log It",
+      DECREMENT_TITLE: "Drop That Count 📉",
+      DECREMENT_MESSAGE: "You sure you wanna drop the count for \"{{action}}\"? 🤔",
+      DECREMENT_CONFIRM: "Yeet Last Entry",
+      DECREMENT_SUCCESS: "Count dropped, we good! ✨",
+      DECREMENT_ERROR: "Oof, couldn't drop that count rn 😅",
+      REMINDER: "Yo! Time to {{action}}! 🔔",
     },
     ACTIONS: {
       CHANGED_TAMPON: "Swapped the Plug",
@@ -56,8 +75,20 @@ export const SL_STRINGS={
       },
       BATHROOM: {
         PEED: "Quick Pee 🚰",
-        POOPED: "Did a Number Two 💩",
+        POOPED: "Did a Number Two ��",
       },
+    },
+    ACTION_VERBS: {
+      PEED: "take a leak",
+      POOPED: "drop a deuce",
+      DRANK_WATER: "hydrate",
+      DRANK_COFFEE: "get your coffee fix",
+      DRANK_TEA: "sip some tea",
+      TOOK_PAINKILLER: "pop a painkiller",
+      CHANGED_TAMPON: "swap your tampon",
+      CHANGED_PAD: "switch your pad",
+      CHANGED_CUP: "empty your cup",
+      CHANGED_UNDERWEAR: "change your period undies",
     },
   },
   CALENDAR: {
@@ -93,7 +124,11 @@ export const SL_STRINGS={
   },
 
   SETTINGS: {
-    NOTIFICATIONS: {TITLE: "Ping Me 📲",DAILY_SUMMARIES: "Daily Recap 🔄"},
+    NOTIFICATIONS: {
+      TITLE: "Ping Settings 📱",
+      ENABLE: "Turn On Notifications 🔔",
+      DAILY_SUMMARIES: "Daily Recap 🔄"
+    },
     LANGUAGE: {
       TITLE: "Language 🌐",
       SELECT: "Pick a Language",
@@ -263,8 +298,8 @@ export const SL_STRINGS={
     NOTE: "Hot Take 📝",
     VALUE: "What's the Score? 🎯",
     UNIT: "How Much? 📏",
-    NAME: "Tag Yo’self 🏷️",
-    TYPE: "What’s the Vibe? 🤔",
+    NAME: "Tag Yo'self 🏷️",
+    TYPE: "What's the Vibe? 🤔",
     CALORIES: "Burn It Up 🔥",
     PROTEIN: "Gainz 💪",
     CARBS: "Bread Count 🍞",

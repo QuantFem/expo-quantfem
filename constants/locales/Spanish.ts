@@ -1,15 +1,36 @@
 export const ES_STRINGS={
   HOMEPAGE: {
     ACTIVITY: {
-      TITLE: "Actividad de hoy",
-      NO_ACTIVITY: "No hay actividad registrada hoy. ¡Empieza a seguir abajo!",
-      QUICK_HINT: "Toca un botón para registrar tu actividad al instante. Ve a Trackers para más detalles.",
+      TITLE: "Actividad de Hoy",
+      NO_ACTIVITY: "No hay actividad registrada hoy. ¡Empieza a registrar abajo!",
+      
+      QUICK_HINT: "Toca un botón para registrar instantáneamente una actividad con la hora actual.\n" +
+                 "Por ejemplo, si tocas 'Té', significa que acabas de beber té.\n" +
+                 "Si registras 'Analgésico', significa que lo tomaste ahora, y la próxima dosis se programará en 6 horas\n" +
+                 "(visible en Actividades de Hoy).\n\n" +
+                 "Para registros detallados como dosis de medicamentos, síntomas o nutrición, usa la sección de Seguimiento.",
+      
       UPCOMING: "Próximamente:",
-      HOME_HINT: "Toca cualquier botón para registrar rápido. Mira Trackers para más detalles.",
-      TRACKERS_HINT: "Selecciona un rastreador para editar, borrar o duplicar una entrada. 'Quick Log' la registra con la fecha de hoy.",
-      CALENDAR_HINT: "Visualiza tu historial en un calendario. Toca una fecha para ver tus datos.",
-      SETTINGS_HINT: "Personaliza tu experiencia con temas, notificaciones y más.",
-      SHOW_HELP: "Mostrar tooltips de ayuda",
+      
+      HOME_HINT: "Toca un botón para registrar tu actividad instantáneamente.\n" +
+                "Consulta la sección de Seguimiento para un historial completo.",
+      
+      TRACKERS_HINT: "Usa los seguimientos para registros detallados con control total.\n" +
+                    "Ver, editar o eliminar entradas anteriores.\n\n" +
+                    "Para actividades recurrentes (por ejemplo, comer la misma comida),\n" +
+                    "toca el botón de registro rápido en lugar de volver a ingresar los detalles manualmente.",
+      
+      CALENDAR_HINT: "Ve todas tus actividades registradas en formato calendario.\n" +
+                    "Toca cualquier fecha para ver entradas anteriores.",
+      
+      SETTINGS_HINT: "Personaliza tu experiencia:\n" +
+                    "- Cambia temas, notificaciones y preferencias.\n" +
+                    "- Genera informes para visitas médicas.\n" +
+                    "- Exporta datos para respaldo (ej. Google Drive) o importa registros anteriores.\n" +
+                    "- Asegura la aplicación con biometría.\n" +
+                    "- Accede a recursos educativos en nuestro sitio web, funciones de IA o ajusta notificaciones.",
+      
+      SHOW_HELP: "Mostrar Ayuda",
     },
 
 
@@ -22,7 +43,12 @@ export const ES_STRINGS={
       CONFIRM_TITLE: "Confirmar Acción",
       CONFIRM_MESSAGE: "¿Estás seguro de que quieres registrar: {{action}}?",
       CANCEL_BUTTON: "Cancelar",
-      CONFIRM_LOG_BUTTON: "Sí, Registrarlo",
+      CONFIRM_LOG_BUTTON: "Sí, Registrar",
+      DECREMENT_TITLE: "Reducir Actividad",
+      DECREMENT_MESSAGE: "¿Estás seguro de que quieres reducir el conteo de \"{{action}}\"?",
+      DECREMENT_CONFIRM: "Eliminar Última Entrada",
+      DECREMENT_SUCCESS: "Conteo de actividad reducido.",
+      DECREMENT_ERROR: "Error al reducir el conteo de actividad.",
       REMINDER: "¡Recordatorio para {{action}}!",
     },
     ACTIONS: {
@@ -60,6 +86,18 @@ export const ES_STRINGS={
         POOPED: "Defecar",
       },
     },
+    ACTION_VERBS: {
+      PEED: "orinar",
+      POOPED: "defecar",
+      DRANK_WATER: "beber agua",
+      DRANK_COFFEE: "beber café",
+      DRANK_TEA: "beber té",
+      TOOK_PAINKILLER: "tomar un analgésico",
+      CHANGED_TAMPON: "cambiar tu tampón",
+      CHANGED_PAD: "cambiar tu toalla sanitaria",
+      CHANGED_CUP: "cambiar tu copa menstrual",
+      CHANGED_UNDERWEAR: "cambiar tu ropa interior menstrual",
+    },
   },
   CALENDAR: {
     VIEW_MODES: {daily: "diario",weekly: "semanal",monthly: "mensual",yearly: "anual"},
@@ -70,7 +108,11 @@ export const ES_STRINGS={
     ],
   },
   SETTINGS: {
-    NOTIFICATIONS: {TITLE: "Notificaciones generales",DAILY_SUMMARIES: "Resúmenes diarios"},
+    NOTIFICATIONS: {
+      TITLE: "Notificaciones",
+      ENABLE: "Activar notificaciones",
+      DAILY_SUMMARIES: "Resúmenes diarios",
+    },
     LANGUAGE: {
       TITLE: "Idioma",
       SELECT: "Seleccionar idioma",
