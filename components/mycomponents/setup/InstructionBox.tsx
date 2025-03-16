@@ -16,7 +16,7 @@ const InstructionBox: React.FC = () => {
 
   // ✅ Get translated instructions dynamically
   const instructionMessages: { [key: string]: string } = {
-    "/": i18n.t("HOMEPAGE.ACTIVITY.HOME_HINT"),
+    "/": i18n.t("HOMEPAGE.ACTIVITY.QUICK_HINT"),
     "/trackers": i18n.t("HOMEPAGE.ACTIVITY.TRACKERS_HINT"),
     "/calendar": i18n.t("HOMEPAGE.ACTIVITY.CALENDAR_HINT"),
     "/settings": i18n.t("HOMEPAGE.ACTIVITY.SETTINGS_HINT"),
