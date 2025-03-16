@@ -35,16 +35,16 @@ const NutritionEntriesScreen: React.FC = () => {
   const [openServing, setOpenServing] = useState(false);
 
   const [itemsServing, setItemsServing] = useState([
-    { label: i18n.t("NUTRITION.SERVING_UNITS.PIECE"), value: "piece" },
-    { label: i18n.t("NUTRITION.SERVING_UNITS.GRAMS"), value: "g" },
-    { label: i18n.t("NUTRITION.SERVING_UNITS.MILLILITERS"), value: "ml" },
-    { label: i18n.t("NUTRITION.SERVING_UNITS.OUNCES"), value: "oz" }
+    { label: "piece", value: "piece" },
+    { label: "grams (g)", value: "g" },
+    { label: "milliliters (ml)", value: "ml" },
+    { label: "ounces (oz)", value: "oz" }
   ]);
 
   const [itemsType, setItemsType] = useState([
-    { label: i18n.t("NUTRITION.MEAL_TYPES.MEAL"), value: "Meal" },
-    { label: i18n.t("NUTRITION.MEAL_TYPES.SNACK"), value: "Snack" },
-    { label: i18n.t("NUTRITION.MEAL_TYPES.DRINK"), value: "Drink" },
+    { label: "Meal", value: "Meal" },
+    { label: "Snack", value: "Snack" },
+    { label: "Drink", value: "Drink" },
   ]);
 
 
@@ -303,7 +303,7 @@ const NutritionEntriesScreen: React.FC = () => {
               {/* Header */}
               <View style={styles.buttonContainer}>
                 <Text style={styles.modalHeader}>
-                  {selectedItem ? i18n.t('TRACKERS.NUTRITION.EDIT') : i18n.t('TRACKERS.NUTRITION.ADD')}
+                  {selectedItem ? "Edit Item" : "Add New Item"}
                 </Text>
                 <TouchableOpacity onPress={() => setModalVisible(false)}>
                   <Text style={styles.cardHeader}>✕</Text>

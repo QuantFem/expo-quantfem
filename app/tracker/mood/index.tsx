@@ -181,10 +181,10 @@ const MoodJournalScreen: React.FC = () => {
           <View style={styles.modalContent}>
             <View style={styles.buttonContainer}>
               <Text style={styles.modalHeader}>
-                {selectedEntry ? i18n.t('TRACKERS.MOOD.EDIT') : i18n.t('TRACKERS.MOOD.ADD')}
+                {selectedEntry ? 'Edit Mood Entry' : 'New Mood Entry'}
               </Text>
               <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <Text style={styles.text}>{i18n.t('GENERAL_TRACKER.MODAL.CLOSE')}</Text>
+                <Text style={styles.text}>✕</Text>
               </TouchableOpacity>
             </View>
 

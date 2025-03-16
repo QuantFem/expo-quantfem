@@ -1,42 +1,16 @@
 export const FR_STRINGS={
   HOMEPAGE: {
     ACTIVITY: {
-      TITLE: "Activité du Jour",
-      NO_ACTIVITY: "Aucune activité enregistrée aujourd'hui. Commencez à suivre ci-dessous !",
-      QUICK_HINT: "Appuyez sur un bouton pour enregistrer instantanément une activité avec l'heure actuelle.\n" +
-                 "Par exemple, si vous appuyez sur 'Thé', cela signifie que vous venez de boire du thé.\n" +
-                 "Si vous enregistrez 'Antidouleur', cela signifie que vous l'avez pris maintenant, et la prochaine dose sera programmée dans 6 heures\n" +
-                 "(visible dans les Activités du Jour).\n\n" +
-                 "Pour des enregistrements détaillés comme les doses de médicaments, les symptômes ou la nutrition, utilisez la section Suivi.",
+      TITLE: "Activité du jour",
+      NO_ACTIVITY: "Aucune activité enregistrée aujourd'hui. Commencez le suivi ci-dessous !",
+      QUICK_HINT: "Appuyez sur un bouton pour enregistrer votre activité en un instant. Allez dans Trackers pour plus de détails.",
       UPCOMING: "À venir :",
-      HOME_HINT: "Appuyez sur un bouton pour enregistrer votre activité instantanément.\n" +
-                "Consultez la section Suivi pour un historique complet.",
-      TRACKERS_HINT: "Utilisez les suivis pour des enregistrements détaillés avec un contrôle total.\n" +
-                    "Voir, modifier ou supprimer les entrées précédentes.\n\n" +
-                    "Pour les activités récurrentes (par exemple, manger le même repas),\n" +
-                    "appuyez sur le bouton d'enregistrement rapide au lieu de ressaisir les détails manuellement.",
-      CALENDAR_HINT: "Voyez toutes vos activités enregistrées au format calendrier.\n" +
-                    "Appuyez sur une date pour voir les entrées précédentes.",
-      SETTINGS_HINT: "Personnalisez votre expérience :\n" +
-                    "- Changez les thèmes, les notifications et les préférences.\n" +
-                    "- Générez des rapports pour les visites médicales.\n" +
-                    "- Exportez les données pour sauvegarde (ex. Google Drive) ou importez des enregistrements passés.\n" +
-                    "- Sécurisez l'application avec la biométrie.\n" +
-                    "- Accédez aux ressources éducatives sur notre site web, aux fonctionnalités IA ou ajustez les notifications.",
-      SHOW_HELP: "Afficher l'Aide",
-      ACTION_VERBS: {
-        PEED: "faire pipi",
-        POOPED: "aller à la selle",
-        DRANK_WATER: "boire de l'eau",
-        DRANK_COFFEE: "boire du café",
-        DRANK_TEA: "boire du thé",
-        TOOK_PAINKILLER: "prendre un antidouleur",
-        CHANGED_TAMPON: "changer votre tampon",
-        CHANGED_PAD: "changer votre serviette hygiénique",
-        CHANGED_CUP: "changer votre coupe menstruelle",
-        CHANGED_UNDERWEAR: "changer vos sous-vêtements menstruels",
-      },
-    },
+      HOME_HINT: "Appuyez sur un bouton pour suivre rapidement. Consultez Trackers pour plus d'infos.",
+      TRACKERS_HINT: "Sélectionnez un suivi pour modifier, supprimer ou dupliquer une entrée. Quick Log ajoute avec la date d'aujourd'hui.",
+      CALENDAR_HINT: "Affichez vos données sous forme de calendrier. Cliquez sur une date pour voir vos suivis.",
+      SETTINGS_HINT: "Personnalisez votre expérience : thème, notifications, et préférences.",
+      SHOW_HELP: "Afficher les info-bulles d'aide",
+  },
   
   
   
@@ -95,11 +69,7 @@ export const FR_STRINGS={
     ],
   },
   SETTINGS: {
-    NOTIFICATIONS: {
-      TITLE: "Notifications",
-      ENABLE: "Activer les notifications",
-      DAILY_SUMMARIES: "Résumés quotidiens",
-    },
+    NOTIFICATIONS: {TITLE: "Notifications générales",DAILY_SUMMARIES: "Résumés quotidiens"},
     LANGUAGE: {
       TITLE: "Langue",
       SELECT: "Sélectionner la langue",
@@ -163,59 +133,35 @@ export const FR_STRINGS={
   TRACKERS: {
     SYMPTOM: {
       ADD: "Ajouter un symptôme",
-      EDIT: "Modifier le symptôme",
       NO_DATA: "Aucun symptôme enregistré",
     },
     MEDICATION: {
       ADD: "Ajouter un médicament",
-      EDIT: "Modifier le médicament",
       NO_DATA: "Aucun médicament enregistré",
     },
     PERIOD: {
       ADD: "Ajouter période/cycle",
-      EDIT: "Modifier période/cycle",
       NO_DATA: "Aucune donnée de période/cycle enregistrée",
     },
     ACTIVITY: {
       ADD: "Ajouter une activité",
-      EDIT: "Modifier l'activité",
       NO_DATA: "Aucune activité enregistrée",
     },
     MOOD: {
       ADD: "Ajouter une humeur",
-      EDIT: "Modifier l'humeur",
       NO_DATA: "Aucune entrée d'humeur enregistrée",
     },
     NUTRITION: {
       ADD: "Ajouter nutrition",
-      EDIT: "Modifier nutrition",
       NO_DATA: "Aucune donnée nutritionnelle enregistrée",
     },
     SLEEP: {
       ADD: "Ajouter sommeil",
-      EDIT: "Modifier sommeil",
       NO_DATA: "Aucune donnée de sommeil enregistrée",
     },
   },
   COMMON: {
-    ADD: "Ajouter",
-    EDIT: "Modifier",
-    DELETE: "Supprimer",
-    CANCEL: "Annuler",
-    SAVE: "Enregistrer",
-    NA: "Données non disponibles",
-    
-    // Common levels
-    INTENSITY: {
-      LOW: "Faible",
-      MEDIUM: "Moyenne",
-      HIGH: "Élevée"
-    },
-    SEVERITY: {
-      MILD: "Légère",
-      MODERATE: "Modérée",
-      SEVERE: "Sévère"
-    }
+    NA: "Aucun"
   },
   HISTORY: {
     TABS: {
@@ -316,110 +262,46 @@ export const FR_STRINGS={
         DURATION: "Durée",
       
   },
-  SLEEP: {
-    INTERRUPTIONS: {
-      TITLE: "Interruptions de Sommeil",
-      ADD_BUTTON: "Ajouter une Interruption",
-      REASONS: {
-        BATHROOM: "Toilettes",
-        NOISE: "Bruit",
-        DISCOMFORT: "Inconfort",
-        ANXIETY: "Anxiété",
-        PAIN: "Douleur",
-        OTHER: "Autre"
-      }
-    }
-  },
-  NUTRITION: {
-    MEAL_TYPES: {
-      MEAL: "Repas",
-      SNACK: "Collation",
-      DRINK: "Boisson"
+  INSIGHTS: {
+    TITLE: "Analyses",
+    OVERVIEW: "Aperçu",
+    TOTAL_ENTRIES: "{{count}} entrées totales",
+    DATE_RANGE: "Données du {{start}} au {{end}}",
+    CATEGORIES: "Catégories",
+    CATEGORY_COUNT: {
+      SYMPTOMS: "{{count}} symptômes suivis",
+      MEDICATIONS: "{{count}} médicaments gérés",
+      CYCLES: "{{count}} cycles enregistrés",
+      MOODS: "{{count}} entrées d'humeur",
+      SLEEP: "{{count}} enregistrements de sommeil",
+      NUTRITION: "{{count}} journaux de nutrition"
     },
-    SERVING_UNITS: {
-      GRAMS: "g",
-      MILLILITERS: "ml",
-      OUNCES: "oz",
-      PIECE: "unité"
-    }
+    TRENDS: "Tendances et Modèles",
+    MOST_TRACKED_SYMPTOM: "Le plus suivi : {{symptom}}",
+    COMMON_MOOD: "Humeur commune : {{pattern}}",
+    AVG_SLEEP: "Moyenne de sommeil : {{hours}} heures",
+    MED_ADHERENCE: "Adhésion aux médicaments : {{percentage}}%",
+    STREAKS: "Séries d'Activité",
+    CURRENT_STREAK: "Série actuelle : {{days}} jours",
+    LONGEST_STREAK: "Plus longue série : {{days}} jours",
+    LAST_ACTIVITY: "Dernière activité : {{time}}",
+    EXPORT_DATA: "Exporter les Données",
+    RESET_DATA: "Réinitialiser les Données"
   },
-  MEDICATION: {
-    ACTIONS: {
-      TAKE: "Prendre",
-      STOP: "Arrêter",
-      CHANGE: "Changer la Dose",
-      RESTART: "Reprendre"
+  ALERTS: {
+    CONFIRM: {
+      RESET: "Réinitialiser Toutes les Données",
+      RESET_MESSAGE: "Cela supprimera définitivement toutes vos données. Êtes-vous sûr de vouloir continuer ?",
     },
-    STATUS: {
-      ACTIVE: "Actif",
-      STOPPED: "Arrêté"
+    SUCCESS: {
+      EXPORT: "Données Exportées",
+      EXPORT_MESSAGE: "Vos données ont été exportées et chiffrées avec succès.",
+      RESET: "Réinitialisation des Données Terminée",
     },
-    ALERTS: {
-      SUCCESS: {
-        ADDED: "✅ Entrée ajoutée avec succès",
-        UPDATED: "✅ Entrée mise à jour avec succès",
-        DELETED: "✅ Entrée supprimée avec succès",
-        STOPPED: "✅ Entrée arrêtée avec succès",
-        RESTARTED: "✅ Entrée redémarrée avec succès",
-        TAKEN: "✅ Entrée enregistrée avec succès",
-        SAVED: "✅ Modifications enregistrées avec succès",
-        NEXT_DOSE: "✅ Prochaine dose prévue pour: {{time}}",
-        IMPORT: "✅ Importation Terminée",
-        IMPORT_DETAILS: "✅ Suivi: {{trackerSuccess}} importés, {{trackerFailed}} échoués.\n✅ Historique: {{historySuccess}} importés, {{historyFailed}} échoués."
-      },
-
-      ERROR: {
-        ADD: "❌ Échec de l'ajout de l'entrée",
-        UPDATE: "❌ Échec de la mise à jour de l'entrée",
-        DELETE: "❌ Échec de la suppression de l'entrée",
-        SAVE: "❌ Échec de l'enregistrement des modifications",
-        GENERIC: "❌ Une erreur s'est produite",
-        IMPORT: "❌ Erreur d'Importation",
-        INVALID_FORMAT: "❌ Format JSON invalide. Veuillez vérifier le contenu du fichier.",
-        REMINDER: "❌ Échec de la configuration du rappel. Veuillez réessayer."
-      },
-
-      // Warning/Validation messages with emojis
-      WARNING: {
-        REQUIRED_FIELDS: "⚠️ Veuillez remplir tous les champs obligatoires",
-        INVALID_INPUT: "⚠️ Entrée Invalide",
-        UNSUPPORTED_VALUE: "⚠️ Valeur non prise en charge",
-        INVALID_DATE: "⚠️ Date sélectionnée invalide",
-        INVALID_TIME: "⚠️ Heure sélectionnée invalide",
-        INVALID_REMINDER: "⚠️ Veuillez entrer un nombre de jours valide pour le rappel."
-      },
-
-      // Empty states
-      NO_ENTRIES: "Aucune entrée disponible",
-      NO_ACTIVE_ENTRIES: "Aucune entrée active",
-      NO_STOPPED_ENTRIES: "Aucune entrée arrêtée",
-
-      // Confirmation messages
-      CONFIRM: {
-        DELETE: "Êtes-vous sûr de vouloir supprimer cette entrée ?",
-        STOP: "Êtes-vous sûr de vouloir arrêter cette entrée ?",
-        RESTART: "Êtes-vous sûr de vouloir redémarrer cette entrée ?",
-        DISCARD: "Êtes-vous sûr de vouloir annuler les modifications ?",
-        ACTION: "Confirmer l'Action",
-        MESSAGE: "Êtes-vous sûr de vouloir enregistrer : {{action}} ?",
-        SCHEDULED_ACTION: "Action Programmée",
-        SCHEDULED_MESSAGE: "Vous devez {{action}} à {{nextReminder}}. Voulez-vous attendre ou l'enregistrer maintenant ?",
-        WAIT: "Attendre",
-        LOG_NOW: "Enregistrer Maintenant",
-        CANCEL: "Annuler",
-        LOG: "Oui, Enregistrer",
-        QUICK_LOG: "Voulez-vous enregistrer une entrée pour {{date}} ?"
-      }
-    }
+    ERROR: {
+      EXPORT: "Échec de l'exportation des données",
+      RESET: "Échec de la réinitialisation des données",
+    },
   },
-  CYCLE: {
-    FLOW: {
-      NONE: "Aucun",
-      LIGHT: "Léger",
-      MEDIUM: "Moyen",
-      HEAVY: "Abondant",
-      SPOTTING: "Spotting"
-    }
-  }
 };
 

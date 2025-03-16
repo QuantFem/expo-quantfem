@@ -4,13 +4,11 @@ import {useCustomColorScheme} from "@/components/useCustomColorScheme"; // ✅ C
 import {getThemedStyles} from "@/constants/Styles";
 import Colors from "@/constants/Colors";
 import useBiometricAuth from "@/components/mycomponents/BiometricAuth";
-import {Platform, View} from "react-native";
+import {View} from "react-native";
 import {requestNotificationPermission} from "@/components/mycomponents/notifications/notifications"; // ✅ Import notifications
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import {UserPreferencesProvider} from "@/contexts/UserPreferencesContext";
 import InstructionBox from "@/components/mycomponents/setup/InstructionBox";
-import {HapticTab} from "@/components/HapticTab";
 
 function TabBarIcon({name,color}: {name: React.ComponentProps<typeof FontAwesome>["name"]; color: string}) {
   return <FontAwesome name={name} size={28} style={{marginBottom: -3}} color={color} />;
@@ -56,11 +54,19 @@ export default function TabsLayout() {
               tabBarIcon: ({color}) => <TabBarIcon name="home" color={color} />,
             }}
           />
+
+          <Tabs.Screen
+            name="insights"
+            options={{
+              title: "Insights",
+              tabBarIcon: ({color}) => <TabBarIcon name="line-chart" color={color} />,
+            }}
+          />
           <Tabs.Screen
             name="trackers"
             options={{
               title: "Trackers",
-              tabBarIcon: ({color}) => <TabBarIcon name="clipboard" color={color} />,
+              tabBarIcon: ({color}) => <TabBarIcon name="plus" color={color} />,
             }}
           />
           <Tabs.Screen

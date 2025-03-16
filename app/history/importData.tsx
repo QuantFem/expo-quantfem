@@ -3,7 +3,6 @@ import * as FileSystem from "expo-file-system";
 import { Alert } from "react-native";
 import { CalendarDataService, CalendarItem } from "@/storage/CalendarService";
 import db from "@/storage/db";
-import i18n from "@/components/mycomponents/setup/localization/localization";
 
 export const importData = async () => {
   try {
@@ -107,18 +106,13 @@ export const importData = async () => {
   
       // ✅ Final Success Message
       Alert.alert(
-        i18n.t('ALERTS.SUCCESS.IMPORT'),
-        i18n.t('ALERTS.SUCCESS.IMPORT_DETAILS', {
-          trackerSuccess,
-          trackerFailed,
-          historySuccess,
-          historyFailed
-        })
+        "Import Completed",
+        `✅ Tracker: ${trackerSuccess} imported, ${trackerFailed} failed.\n✅ History: ${historySuccess} imported, ${historyFailed} failed.`
       );
   
     } catch (error: any) {
       console.error("❌ Critical Error Parsing JSON:", error.message);
-      Alert.alert(i18n.t('ALERTS.ERROR.IMPORT'), i18n.t('ALERTS.ERROR.INVALID_FORMAT'));
+      Alert.alert("Error", "Invalid JSON format. Please check the file contents.");
     }
   };
 

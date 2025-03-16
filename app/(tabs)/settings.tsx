@@ -121,7 +121,7 @@ const SettingsScreen: React.FC = () => {
             }}
             style={{ backgroundColor: "white" }}
             dropDownContainerStyle={{ backgroundColor: "white" }}
-            listMode="SCROLLVIEW"
+            listMode="SCROLLVIEW" // ✅ Prevents VirtualizedList nesting issue
           />
         </View>
 
@@ -139,7 +139,7 @@ const SettingsScreen: React.FC = () => {
             }}
             style={{ backgroundColor: "white" }}
             dropDownContainerStyle={{ backgroundColor: "white" }}
-            listMode="SCROLLVIEW"
+            listMode="SCROLLVIEW" // ✅ Prevents VirtualizedList nesting issue
           />
         </View>
 

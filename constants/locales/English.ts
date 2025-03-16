@@ -85,12 +85,6 @@ export const EN_STRINGS = {
             CANCEL_BUTTON: "Cancel",
             CONFIRM_LOG_BUTTON: "Yes, Log It",
 
-            DECREMENT_TITLE: "Decrement Activity",
-            DECREMENT_MESSAGE: "Are you sure you want to reduce the count for \"{{action}}\"?",
-            DECREMENT_CONFIRM: "Remove Last Entry",
-            DECREMENT_SUCCESS: "Activity count reduced.",
-            DECREMENT_ERROR: "Failed to reduce activity count.",
-
             REMINDER: "Reminder to {{action}}!",
             REMIND_LATER_BUTTON: "Remind Me Later", // ✅ Added missing button
             SET_REMINDER_TITLE: "Set Reminder",
@@ -129,19 +123,6 @@ export const EN_STRINGS = {
             DRANK_TEA: "Drank Tea",
             PEED: "Peed",
             POOPED: "Pooped",
-        },
-
-        ACTION_VERBS: {
-            PEED: "pee",
-            POOPED: "poo",
-            DRANK_WATER: "drink water",
-            DRANK_COFFEE: "drink coffee",
-            DRANK_TEA: "drink tea",
-            TOOK_PAINKILLER: "take a painkiller",
-            CHANGED_TAMPON: "change your tampon",
-            CHANGED_PAD: "change your pad",
-            CHANGED_CUP: "change your menstrual cup",
-            CHANGED_UNDERWEAR: "change your period underwear",
         },
     },
     CALENDAR: {
@@ -260,7 +241,7 @@ export const EN_STRINGS = {
         MODAL: {
             EDIT_HEALTH_ENTRY: "Edit Health Entry",
             ADD_HEALTH_ENTRY: "Add Health Entry",
-            CLOSE: "Close",
+            CLOSE: "✕",
             DATE: "Date",
             SELECT_DATE: "Select Date",
             WEIGHT: "Weight (kg)",
@@ -283,61 +264,36 @@ export const EN_STRINGS = {
     TRACKERS: {
         SYMPTOM: {
             ADD: "Add Symptom",
-            EDIT: "Edit Symptom",
             NO_DATA: "No symptoms recorded",
         },
         MEDICATION: {
             ADD: "Add Medication",
-            EDIT: "Edit Medication",
-            NO_ACTIVE: "No active medications",
-            NO_STOPPED: "No stopped medications"
+            NO_DATA: "No medications recorded",
         },
         PERIOD: {
             ADD: "Add Period/Cycle",
-            EDIT: "Edit Period/Cycle",
             NO_DATA: "No period/cycle data recorded",
         },
         ACTIVITY: {
             ADD: "Add Activity",
-            EDIT: "Edit Activity",
             NO_DATA: "No activities recorded",
         },
         MOOD: {
             ADD: "Add Mood",
-            EDIT: "Edit Mood",
             NO_DATA: "No mood entries recorded",
         },
         NUTRITION: {
             ADD: "Add Nutrition",
-            EDIT: "Edit Nutrition",
             NO_DATA: "No nutrition data recorded",
         },
         SLEEP: {
             ADD: "Add Sleep",
-            EDIT: "Edit Sleep",
             NO_DATA: "No sleep data recorded",
         },
     },
     // strings.ts
     COMMON: {
-        ADD: "Add",
-        EDIT: "Edit",
-        DELETE: "Delete",
-        CANCEL: "Cancel",
-        SAVE: "Save",
-        NA: "No data available",
-        
-        // Common levels
-        INTENSITY: {
-            LOW: "Low",
-            MEDIUM: "Medium",
-            HIGH: "High"
-        },
-        SEVERITY: {
-            MILD: "Mild",
-            MODERATE: "Moderate",
-            SEVERE: "Severe"
-        }
+        NA: "None" // Add this line for "Not Available"
     },
     HISTORY: {
         TABS: {
@@ -389,23 +345,12 @@ export const EN_STRINGS = {
         }
     },
     LABELS: {
-        NAME: "Name",
-        DOSAGE: "Dosage",
-        FREQUENCY: "Frequency",
-        TIMETOTAKE: "Time to Take",
         STARTDATE: "Start Date",
         ENDDATE: "End Date",
-        NOTES: "Notes",
-        NEXTDOSE: "Next Dose",
-        TYPE: "Type",
-        CALORIES: "Calories",
-        PROTEIN: "Protein",
-        CARBS: "Carbs",
-        FAT: "Fat",
-        SERVINGSIZE: "Serving Size",
         CYCLELENGTH: "Cycle Length",
         PERIODLENGTH: "Period Length",
         SYMPTOMS: "Symptoms",
+        NOTES: "Notes",
         CREATEDAT: "Created At",
         UPDATEDAT: "Updated At",
         ID: "ID",
@@ -425,9 +370,19 @@ export const EN_STRINGS = {
         NOTE: "Note",
         VALUE: "Value",
         UNIT: "Unit",
+        NAME: "Name",
+        TYPE: "Type",
+        CALORIES: "Calories",
+        PROTEIN: "Protein",
+        CARBS: "Carbohydrates",
+        FAT: "Fat",
+        SERVINGSIZE: "Serving Size",
         SERVINGUNIT: "Serving Unit",
         FAVORITE: "Favorite",
         LASTUSED: "Last Used",
+        DOSAGE: "Dosage",
+        FREQUENCY: "Frequency",
+        TIMETOTAKE: "Time to Take",
         STARTTIME: "Start Time",
         ENDTIME: "End Time",
         INTENSITY: "Intensity",
@@ -437,131 +392,48 @@ export const EN_STRINGS = {
         NIGHTWAKEUPS: "Night Wakeups",
         SEVERITY: "Severity",
         LASTTAKEN: "Last Taken",
+        NEXTDOSE: "Next Dose",
         DURATION: "Duration",
     },
-    SLEEP: {
-        // ... existing sleep translations ...
-        INTERRUPTIONS: {
-            TITLE: "Sleep Interruptions",
-            ADD_BUTTON: "Add Interruption",
-            REASONS: {
-                BATHROOM: "Bathroom",
-                NOISE: "Noise",
-                DISCOMFORT: "Discomfort",
-                ANXIETY: "Anxiety",
-                PAIN: "Pain",
-                OTHER: "Other"
-            }
-        }
-    },
-    NUTRITION: {
-        // ... existing nutrition translations ...
-        MEAL_TYPES: {
-            MEAL: "Meal",
-            SNACK: "Snack",
-            DRINK: "Drink"
+    INSIGHTS: {
+        TITLE: "Insights",
+        OVERVIEW: "Overview",
+        TOTAL_ENTRIES: "{{count}} total entries",
+        DATE_RANGE: "Data from {{start}} to {{end}}",
+        CATEGORIES: "Categories",
+        CATEGORY_COUNT: {
+            SYMPTOMS: "{{count}} symptoms tracked",
+            MEDICATIONS: "{{count}} medications managed",
+            CYCLES: "{{count}} cycles recorded",
+            MOODS: "{{count}} mood entries",
+            SLEEP: "{{count}} sleep records",
+            NUTRITION: "{{count}} nutrition logs"
         },
-        SERVING_UNITS: {
-            GRAMS: "g",
-            MILLILITERS: "ml",
-            OUNCES: "oz",
-            PIECE: "piece"
-        }
-    },
-    MEDICATION: {
-        ACTIONS: {
-            TAKE: "Take",
-            STOP: "Stop",
-            CHANGE: "Change Dose",
-            RESTART: "Restart"
-        },
-        STATUS: {
-            ACTIVE: "Active",
-            STOPPED: "Stopped"
-        },
-        ALERTS: {
-            STOPPED_SUCCESS: "Medication stopped successfully",
-            RESTARTED_SUCCESS: "Medication restarted successfully",
-            UPDATE_FAILED: "Failed to update",
-            REQUIRED_FIELDS: "Please fill in all required fields",
-            UPDATED_SUCCESS: "Updated successfully",
-            SAVE_ERROR: "Error saving changes",
-            ADDED_SUCCESS: "Added successfully",
-            ADD_FAILED: "Failed to add",
-            INVALID_INPUT: "Invalid input",
-            UNSUPPORTED_FREQUENCY: "Unsupported frequency unit",
-            TAKEN_SUCCESS: "Medication taken. Next dose at: "
-        }
-    },
-    CYCLE: {
-        // ... existing cycle translations ...
-        FLOW: {
-            NONE: "None",
-            LIGHT: "Light",
-            MEDIUM: "Medium",
-            HEAVY: "Heavy",
-            SPOTTING: "Spotting"
-        }
+        TRENDS: "Trends & Patterns",
+        MOST_TRACKED_SYMPTOM: "Most tracked: {{symptom}}",
+        COMMON_MOOD: "Common mood: {{pattern}}",
+        AVG_SLEEP: "Average sleep: {{hours}} hours",
+        MED_ADHERENCE: "Medication adherence: {{percentage}}%",
+        STREAKS: "Activity Streaks",
+        CURRENT_STREAK: "Current streak: {{days}} days",
+        LONGEST_STREAK: "Longest streak: {{days}} days",
+        LAST_ACTIVITY: "Last activity: {{time}}",
+        EXPORT_DATA: "Export Data",
+        RESET_DATA: "Reset Data"
     },
     ALERTS: {
-        // Success messages with emojis
-        SUCCESS: {
-            ADDED: "✅ Entry added successfully",
-            UPDATED: "✅ Entry updated successfully",
-            DELETED: "✅ Entry deleted successfully",
-            STOPPED: "✅ Entry stopped successfully",
-            RESTARTED: "✅ Entry restarted successfully",
-            TAKEN: "✅ Entry taken successfully",
-            SAVED: "✅ Changes saved successfully",
-            NEXT_DOSE: "✅ Next dose scheduled for: {{time}}",
-            IMPORT: "✅ Import Completed",
-            IMPORT_DETAILS: "✅ Tracker: {{trackerSuccess}} imported, {{trackerFailed}} failed.\n✅ History: {{historySuccess}} imported, {{historyFailed}} failed."
-        },
-
-        // Error messages with emojis
-        ERROR: {
-            ADD: "❌ Failed to add entry",
-            UPDATE: "❌ Failed to update entry",
-            DELETE: "❌ Failed to delete entry",
-            SAVE: "❌ Failed to save changes",
-            GENERIC: "❌ An error occurred",
-            IMPORT: "❌ Import Error",
-            INVALID_FORMAT: "❌ Invalid JSON format. Please check the file contents.",
-            REMINDER: "❌ Failed to set reminder. Please try again."
-        },
-
-        // Warning/Validation messages with emojis
-        WARNING: {
-            REQUIRED_FIELDS: "⚠️ Please fill in all required fields",
-            INVALID_INPUT: "⚠️ Invalid Input",
-            UNSUPPORTED_VALUE: "⚠️ Unsupported value provided",
-            INVALID_DATE: "⚠️ Invalid date selected",
-            INVALID_TIME: "⚠️ Invalid time selected",
-            INVALID_REMINDER: "⚠️ Please enter a valid number of days for the reminder."
-        },
-
-        // Confirmation messages
         CONFIRM: {
-            DELETE: "Are you sure you want to delete this entry?",
-            STOP: "Are you sure you want to stop this entry?",
-            RESTART: "Are you sure you want to restart this entry?",
-            DISCARD: "Are you sure you want to discard changes?",
-            ACTION: "Confirm Action",
-            MESSAGE: "Are you sure you want to log: {{action}}?",
-            SCHEDULED_ACTION: "Scheduled Action",
-            SCHEDULED_MESSAGE: "You are due to {{action}} at {{nextReminder}}. Do you want to wait or log it now?",
-            WAIT: "Wait",
-            LOG_NOW: "Log It Now",
-            CANCEL: "Cancel",
-            LOG: "Yes, Log It",
-            QUICK_LOG: "Do you want to log an entry for {{date}}?"
+            RESET: "Reset All Data",
+            RESET_MESSAGE: "This will permanently delete all your data. Are you sure you want to continue?",
         },
-
-        // Empty states
-        EMPTY: {
-            NO_ENTRIES: "No entries available",
-            NO_RESULTS: "No results found",
-            NO_DATA: "No data available"
-        }
+        SUCCESS: {
+            EXPORT: "Data Exported",
+            EXPORT_MESSAGE: "Your data has been successfully exported and encrypted.",
+            RESET: "Data Reset Complete",
+        },
+        ERROR: {
+            EXPORT: "Failed to export data",
+            RESET: "Failed to reset data",
+        },
     },
 } as const;

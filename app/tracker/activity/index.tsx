@@ -9,14 +9,7 @@ import QuickLogButton from "@/components/mycomponents/setup/QuickLogButton";
 import { useNavigation } from "@react-navigation/native";
 import BackButton from "@/components/mycomponents/setup/BackButton";
 
-const INTENSITY_OPTIONS = ['LOW', 'MEDIUM', 'HIGH'] as const;
-type IntensityType = 'Low' | 'Medium' | 'High';
 
-const intensityMapping: Record<typeof INTENSITY_OPTIONS[number], IntensityType> = {
-  'LOW': 'Low',
-  'MEDIUM': 'Medium',
-  'HIGH': 'High'
-};
 
 const ActivityEntriesScreen: React.FC = () => {
   // Base state
@@ -264,12 +257,8 @@ const ActivityEntriesScreen: React.FC = () => {
       />
 
       {/* Activity Modal */}
-      <Modal 
-        visible={isModalVisible} 
-        animationType="slide" 
-        transparent={true}
-        onRequestClose={() => setModalVisible(false)}
-      >
+      {/* Activity Modal */}
+      <Modal visible={isModalVisible} animationType="slide" transparent>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -277,15 +266,22 @@ const ActivityEntriesScreen: React.FC = () => {
           >
             <View style={styles.modalContainer}>
               <View style={styles.modalContent}>
+                {/* Header */}
                 <View style={styles.buttonContainer}>
                   <Text style={styles.modalHeader}>
-                    {selectedActivity ? i18n.t('COMMON.EDIT') : i18n.t('COMMON.ADD')}
+                    {selectedActivity ? "Edit Activity" : "Add Activity"}
                   </Text>
                   <TouchableOpacity onPress={() => setModalVisible(false)}>
-                    <Text style={styles.cardHeader}>{i18n.t('GENERAL_TRACKER.MODAL.CLOSE')}</Text>
+                    <Text style={styles.cardHeader}>✕</Text>
                   </TouchableOpacity>
                 </View>
-                <ScrollView contentContainerStyle={styles.scrollContainer}>
+
+                {/* Scrollable Content */}
+                <ScrollView
+                  style={styles.scrollContainer}
+                  contentContainerStyle={{ flexGrow: 1, paddingBottom: 60 }}
+                  keyboardShouldPersistTaps="handled"
+                >
                   {/* Type */}
                   <View style={styles.section}>
                     <Text style={styles.text}>{i18n.t('LABELS.TYPE')}</Text>
@@ -333,12 +329,10 @@ const ActivityEntriesScreen: React.FC = () => {
                   {/* Intensity */}
                   <View style={styles.section}>
                     <Text style={styles.text}>{i18n.t('LABELS.INTENSITY')}</Text>
-                    
-                    {INTENSITY_OPTIONS.map((intensityKey) => {
-                      const intensity = intensityMapping[intensityKey];
-                      return (
+                    <View style={styles.buttonContainer}>
+                      {(['Low', 'Medium', 'High'] as const).map((intensity) => (
                         <TouchableOpacity
-                          key={intensityKey}
+                          key={intensity}
                           style={[
                             styles.roundButton,
                             (selectedActivity?.intensity === intensity ||
@@ -356,10 +350,10 @@ const ActivityEntriesScreen: React.FC = () => {
                             }
                           }}
                         >
-                          <Text style={styles.buttonText}>{i18n.t(`COMMON.INTENSITY.${intensityKey}`)}</Text>
+                          <Text style={styles.buttonText}>{intensity}</Text>
                         </TouchableOpacity>
-                      );
-                    })}
+                      ))}
+                    </View>
                   </View>
 
                   {/* Notes Input (Prevents Overlapping with Keyboard) */}
@@ -389,11 +383,16 @@ const ActivityEntriesScreen: React.FC = () => {
                   </View>
 
                 </ScrollView>
+
+
+
               </View>
             </View>
           </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
       </Modal>
+
+
 
     </View>
 

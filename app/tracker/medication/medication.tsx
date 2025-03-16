@@ -58,10 +58,10 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
 
             setStoppedMedications(prev => [...prev, medication]);
             setMedications(prev => prev.filter(med => med.id !== id));
-            alert(i18n.t('ALERTS.SUCCESS.STOPPED'));
+            alert(i18n.t('ALERTS.STOPPED_SUCCESS'));
         } catch (error) {
             console.error("Error stopping medication:", error);
-            alert(i18n.t('ALERTS.ERROR.UPDATE'));
+            alert(i18n.t('ALERTS.UPDATE_FAILED'));
         }
     };
 
@@ -78,10 +78,10 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
 
             setMedications(prev => [...prev, medication]);
             setStoppedMedications(prev => prev.filter(med => med.id !== id));
-            alert(i18n.t('ALERTS.SUCCESS.RESTARTED'));
+            alert(i18n.t('ALERTS.RESTARTED_SUCCESS'));
         } catch (error) {
             console.error("Error restarting medication:", error);
-            alert(i18n.t('ALERTS.ERROR.UPDATE'));
+            alert(i18n.t('ALERTS.UPDATE_FAILED'));
         }
     };
 
@@ -146,7 +146,7 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
 
     const handleSave = async () => {
         if (!currentMedication.name || !currentMedication.dosage) {
-            alert(i18n.t('ALERTS.WARNING.REQUIRED_FIELDS'));
+            alert(i18n.t('ALERTS.REQUIRED_FIELDS'));
             return;
         }
 
@@ -173,9 +173,9 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
                 );
                 if (success) {
                     await loadMedications();
-                    alert(i18n.t('ALERTS.SUCCESS.UPDATED'));
+                    alert(i18n.t('ALERTS.UPDATED_SUCCESS'));
                 } else {
-                    alert(i18n.t('ALERTS.ERROR.UPDATE'));
+                    alert(i18n.t('ALERTS.UPDATE_FAILED'));
                 }
             } else {
                 await addMedication(medicationData);
@@ -194,7 +194,7 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
             });
         } catch (error) {
             console.error("Error saving medication:", error);
-            alert(i18n.t('ALERTS.ERROR.SAVE'));
+            alert(i18n.t('ALERTS.SAVE_ERROR'));
         }
     };
 
@@ -215,13 +215,13 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
             const success = await MedicationService.createMedication(newMedication);
             if (success) {
                 await loadMedications();
-                alert(i18n.t('ALERTS.SUCCESS.ADDED'));
+                alert(i18n.t('ALERTS.ADDED_SUCCESS'));
             } else {
-                alert(i18n.t('ALERTS.ERROR.ADD'));
+                alert(i18n.t('ALERTS.ADD_FAILED'));
             }
         } catch (error) {
             console.error("Error adding medication:", error);
-            alert(i18n.t('ALERTS.ERROR.SAVE'));
+            alert(i18n.t('ALERTS.SAVE_ERROR'));
         }
     };
 
@@ -241,14 +241,14 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
                     frequency = JSON.parse(frequency);
                 } catch (error) {
                     console.error("❌ Error parsing frequency:", error);
-                    alert(i18n.t('ALERTS.WARNING.INVALID_INPUT'));
+                    alert(i18n.t('ALERTS.INVALID_INPUT'));
                     return;
                 }
             }
 
             if (!frequency || typeof frequency !== "object" || !frequency.value || !frequency.unit) {
                 console.error("⚠️ Invalid frequency detected:", frequency);
-                alert(i18n.t('ALERTS.WARNING.INVALID_INPUT'));
+                alert(i18n.t('ALERTS.INVALID_INPUT'));
                 return;
             }
 
@@ -267,7 +267,7 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
                     break;
                 default:
                     console.error("❌ Unknown frequency unit:", frequency.unit);
-                    alert(i18n.t('ALERTS.WARNING.UNSUPPORTED_VALUE'));
+                    alert(i18n.t('ALERTS.UNSUPPORTED_FREQUENCY'));
                     return;
             }
 
@@ -285,13 +285,13 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
 
             if (success) {
                 await loadMedications();
-                alert(i18n.t('ALERTS.SUCCESS.TAKEN') + '\n' + i18n.t('ALERTS.SUCCESS.NEXT_DOSE', { time: nextDose.toLocaleString() }));
+                alert(i18n.t('ALERTS.TAKEN_SUCCESS') + nextDose.toLocaleString());
             } else {
-                alert(i18n.t('ALERTS.ERROR.UPDATE'));
+                alert(i18n.t('ALERTS.UPDATE_FAILED'));
             }
         } catch (error) {
             console.error("Error taking medication:", error);
-            alert(i18n.t('ALERTS.ERROR.SAVE'));
+            alert(i18n.t('ALERTS.SAVE_ERROR'));
         }
     };
 
@@ -314,7 +314,7 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
 
             const newDosage = selectedMedication.dosage?.trim();
             if (!newDosage) {
-                alert(i18n.t('ALERTS.WARNING.REQUIRED_FIELDS'));
+                alert("⚠️ Dosage cannot be empty.");
                 return;
             }
 
@@ -326,13 +326,13 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
             if (success) {
                 await loadMedications(); // Refresh medication list
                 setChangeDosageModalVisible(false); // Close modal
-                alert(i18n.t('ALERTS.SUCCESS.UPDATED'));
+                alert("✅ Dosage updated successfully.");
             } else {
-                alert(i18n.t('ALERTS.ERROR.UPDATE'));
+                alert("❌ Failed to update dosage.");
             }
         } catch (error) {
             console.error("❌ Error changing dosage:", error);
-            alert(i18n.t('ALERTS.ERROR.SAVE'));
+            alert("⚠️ Error updating dosage.");
         }
     };
 
@@ -361,8 +361,8 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
                     <View style={styles.section}>
                         <Text style={styles.menuText}>
                             {activeTab === "ACTIVE"
-                                ? i18n.t('TRACKERS.MEDICATION.NO_ACTIVE')
-                                : i18n.t('TRACKERS.MEDICATION.NO_STOPPED')}
+                                ? i18n.t('ALERTS.NO_ACTIVE_ENTRIES')
+                                : i18n.t('ALERTS.NO_STOPPED_ENTRIES')}
                         </Text>
                     </View>
                 }
@@ -387,40 +387,27 @@ const MedicationsScreen: React.FC<{ activeTab: "ACTIVE" | "STOPPED" }> = ({ acti
                                     onPress={() => setActiveMenu(null)}
                                 />
                                 <MenuContainer
+                                    onClose={() => setActiveMenu(null)}
                                     onEdit={() => openModalForEdit(item)}
                                     onDelete={() => deleteMedication(item.id)}
-                                    setActiveMenu={setActiveMenu}
+                                    customButtons={[
+                                        {
+                                            text: i18n.t('MEDICATION.ACTIONS.TAKE'),
+                                            onPress: () => takeMedication(item.id),
+                                        },
+                                        {
+                                            text: i18n.t('MEDICATION.ACTIONS.STOP'),
+                                            onPress: () => stopMedication(item.id),
+                                        },
+                                        {
+                                            text: i18n.t('MEDICATION.ACTIONS.CHANGE'),
+                                            onPress: () => {
+                                                setSelectedMedication(item);
+                                                setChangeDosageModalVisible(true);
+                                            },
+                                        },
+                                    ]}
                                 />
-                                <View style={styles.menuContainer}>
-                                    <TouchableOpacity
-                                        style={styles.menuItem}
-                                        onPress={() => {
-                                            takeMedication(item.id);
-                                            setActiveMenu(null);
-                                        }}
-                                    >
-                                        <Text style={styles.cardHeader}>{i18n.t('MEDICATION.ACTIONS.TAKE')}</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        style={styles.menuItem}
-                                        onPress={() => {
-                                            stopMedication(item.id);
-                                            setActiveMenu(null);
-                                        }}
-                                    >
-                                        <Text style={styles.cardHeader}>{i18n.t('MEDICATION.ACTIONS.STOP')}</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        style={styles.menuItem}
-                                        onPress={() => {
-                                            setSelectedMedication(item);
-                                            setChangeDosageModalVisible(true);
-                                            setActiveMenu(null);
-                                        }}
-                                    >
-                                        <Text style={styles.cardHeader}>{i18n.t('MEDICATION.ACTIONS.CHANGE')}</Text>
-                                    </TouchableOpacity>
-                                </View>
                             </>
                         )}
 

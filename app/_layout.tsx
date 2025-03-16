@@ -6,8 +6,6 @@ import SplashScreenComponent from "./SplashScreen";
 import {getLocales} from "expo-localization";
 import i18n from "@/components/mycomponents/setup/localization/localization"; // Import i18n
 import { SafeAreaView } from "react-native-safe-area-context";
-
-import {setupDatabase} from "@/storage/db";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {StatusBar} from "expo-status-bar";
 import useThemedStyles from "@/components/hooks/useThemedStyles";
@@ -99,7 +97,6 @@ function RootLayoutNav() {
     <Stack screenOptions={{headerShown: false}}>
       <Stack.Screen name="(tabs)" options={{headerShown: false}} />
       <Stack.Screen name="modal" options={{presentation: "modal"}} />
-      <Stack.Screen name="education" options={{headerShown: false}} />
       <Stack.Screen name="reports" options={{headerShown: false}} />
       <Stack.Screen name="settings" options={{headerShown: false}} />
     </Stack>
