@@ -399,7 +399,8 @@ export const EN_STRINGS = {
         TITLE: "Insights",
         OVERVIEW: "Overview",
         TOTAL_ENTRIES: "{{count}} total entries",
-        DATE_RANGE: "Data from {{start}} to {{end}}",
+        TRACKING_PERIOD: "Tracking from {{start}} to {{end}}",
+        STORAGE_INFO: "Storage used: {{used}}MB / {{available}}MB available",
         CATEGORIES: "Categories",
         CATEGORY_COUNT: {
             SYMPTOMS: "{{count}} symptoms tracked",
@@ -407,19 +408,43 @@ export const EN_STRINGS = {
             CYCLES: "{{count}} cycles recorded",
             MOODS: "{{count}} mood entries",
             SLEEP: "{{count}} sleep records",
-            NUTRITION: "{{count}} nutrition logs"
+            NUTRITION: "{{count}} nutrition logs",
+            HEALTH: "{{count}} health metrics"
         },
         TRENDS: "Trends & Patterns",
         MOST_TRACKED_SYMPTOM: "Most tracked: {{symptom}}",
         COMMON_MOOD: "Common mood: {{pattern}}",
         AVG_SLEEP: "Average sleep: {{hours}} hours",
         MED_ADHERENCE: "Medication adherence: {{percentage}}%",
+        CORRELATIONS: {
+            TITLE: "Health Correlations",
+            CYCLE_SYMPTOMS: "During your cycle, {{symptom}} appears {{frequency}} times",
+            SLEEP_NUTRITION: "When you eat {{food}}, your sleep quality is {{quality}}%",
+            MOOD_SYMPTOMS: "When you feel {{mood}}, {{symptom}} appears {{frequency}} times",
+            NUTRITION_SYMPTOMS: "When you eat {{food}}, {{symptom}} appears {{frequency}} times",
+            ACTIVITY_SLEEP: "On days with {{activity}}, your sleep quality is {{quality}}%",
+            MEDICATION_EFFECT: "{{medication}} reduces symptoms by {{reduction}}%",
+            ACTIVITY_MOOD: "{{activity}} often leads to feeling {{mood}} ({{frequency}} times)",
+            HEALTH_SYMPTOMS: "When you have {{condition}}, {{symptom}} appears {{frequency}} times",
+            HEALTH_MOOD: "{{condition}} often relates to feeling {{mood}} ({{frequency}} times)",
+            WEIGHT_NUTRITION: "{{food}} consumption correlates with {{change}}kg weight change",
+            WEIGHT_CYCLE: "Weight tends to {{change}} during your cycle"
+        },
         STREAKS: "Activity Streaks",
         CURRENT_STREAK: "Current streak: {{days}} days",
         LONGEST_STREAK: "Longest streak: {{days}} days",
         LAST_ACTIVITY: "Last activity: {{time}}",
         EXPORT_DATA: "Export Data",
-        RESET_DATA: "Reset Data"
+        RESET_DATA: "Reset Data",
+        HEALTH_METRICS: {
+            TITLE: "Health Metrics",
+            WEIGHT_CURRENT: "Current weight: {{weight}}kg",
+            WEIGHT_CHANGE: "Weight change over {{period}}: {{change}}kg",
+            BP_AVERAGE: "Average blood pressure: {{systolic}}/{{diastolic}} mmHg",
+            BP_CHANGE: "Blood pressure change over {{period}}:",
+            BP_SYSTOLIC: "Systolic: {{change}} mmHg",
+            BP_DIASTOLIC: "Diastolic: {{change}} mmHg"
+        }
     },
     ALERTS: {
         CONFIRM: {
