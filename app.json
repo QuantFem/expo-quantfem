@@ -1,0 +1,46 @@
+ {
+	"expo": {
+		"name": "android-quantfem",
+		"slug": "android-quantfem",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/images/logo.png",
+		"scheme": "myapp",
+		"userInterfaceStyle": "automatic",
+		"newArchEnabled": true,
+		"splash": {
+			"image": "./assets/images/logoc.png",
+			"resizeMode": "contain"
+		},
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/images/transparent.png"
+			},
+			"package": "com.quantfem.androidquantfem"
+		},
+		"web": {
+			"bundler": "metro",
+			"output": "static",
+			"favicon": "./assets/images/favicon.png"
+		},
+		"plugins": [
+			"expo-router",
+			"expo-sqlite",
+			"expo-localization"
+		],
+		"experiments": {
+			"typedRoutes": true
+		},
+		"extra": {
+			"router": {
+				"origin": false
+			},
+			"eas": {
+				"projectId": "62ae1843-8157-42e8-9528-ccc54f248617"
+			}
+		}
+	}
+}
