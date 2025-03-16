@@ -1,5 +1,5 @@
 
-export const EN_STRINGS={
+export const EN_STRINGS = {
 
     // Keep existing translations...
 
@@ -53,14 +53,33 @@ export const EN_STRINGS={
 
         NOTIFICATIONS: {
             SCHEDULED_TITLE: "Scheduled Action",
-            SCHEDULED_MESSAGE: "You are due to {{action}} at {{nextReminder}} Do you want to wait or log it now?",
+            SCHEDULED_MESSAGE: "You are due to {{action}} at {{nextReminder}}. Do you want to wait or log it now?",
+
             WAIT_BUTTON: "Wait",
             LOG_NOW_BUTTON: "Log It Now",
+
             CONFIRM_TITLE: "Confirm Action",
             CONFIRM_MESSAGE: "Are you sure you want to log: {{action}}?",
+
             CANCEL_BUTTON: "Cancel",
             CONFIRM_LOG_BUTTON: "Yes, Log It",
+
             REMINDER: "Reminder to {{action}}!",
+            REMIND_LATER_BUTTON: "Remind Me Later", // ✅ Added missing button
+            SET_REMINDER_TITLE: "Set Reminder",
+            SET_REMINDER_MESSAGE: "Would you like to set a reminder for {{action}}?",
+
+            REMINDER_SCHEDULED: "Reminder scheduled for {{time}}",
+            REMINDER_CANCELLED: "Reminder cancelled",
+            NEXT_REMINDER: "Next reminder at {{nextReminder}}",
+
+            REMINDER_FREQUENCY: "Reminder Frequency",
+            REMINDER_OPTIONS: {
+                HOURLY: "Every Hour",
+                FOUR_HOURS: "Every 4 Hours",
+                SIX_HOURS: "Every 6 Hours",
+                DAILY: "Once a Day",
+            }
         },
 
 
@@ -95,7 +114,7 @@ export const EN_STRINGS={
         },
 
         // Weekdays (Short Names)
-        WEEK_DAYS: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+        WEEK_DAYS: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 
         EVENT_EMOJIS: {
             HEALTH: "🩺",
@@ -111,8 +130,8 @@ export const EN_STRINGS={
 
         // Month Names (Full)
         MONTH_NAMES: [
-            "January","February","March","April","May","June",
-            "July","August","September","October","November","December"
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
         ],
         //date format
 
@@ -183,14 +202,14 @@ export const EN_STRINGS={
         TITLE: "Health Tracker",
 
         BUTTONS: {
-            CYCLE: {LABEL: "Period/Cycle",ICON: "calendar-heart",ROUTE: "../tracker/period"},
-            SLEEP: {LABEL: "Sleep",ICON: "sleep",ROUTE: "../tracker/sleep"},
-            SYMPTOM: {LABEL: "Symptoms",ICON: "thermometer",ROUTE: "../tracker/symptoms"},
-            MEDICATION: {LABEL: "Medication",ICON: "pill",ROUTE: "../tracker/medication"},
-            MOOD: {LABEL: "Mood",ICON: "emoticon-happy",ROUTE: "../tracker/mood"},
-            NUTRITION: {LABEL: "Nutrition",ICON: "food-apple",ROUTE: "../tracker/nutrition"},
-            ACTIVITY: {LABEL: "Activity",ICON: "run",ROUTE: "../tracker/activity"},
-            HEALTH: {LABEL: "General",ICON: "notebook",ROUTE: "../tracker/general"},
+            CYCLE: { LABEL: "Period/Cycle", ICON: "calendar-heart", ROUTE: "../tracker/period" },
+            SLEEP: { LABEL: "Sleep", ICON: "sleep", ROUTE: "../tracker/sleep" },
+            SYMPTOM: { LABEL: "Symptoms", ICON: "thermometer", ROUTE: "../tracker/symptoms" },
+            MEDICATION: { LABEL: "Medication", ICON: "pill", ROUTE: "../tracker/medication" },
+            MOOD: { LABEL: "Mood", ICON: "emoticon-happy", ROUTE: "../tracker/mood" },
+            NUTRITION: { LABEL: "Nutrition", ICON: "food-apple", ROUTE: "../tracker/nutrition" },
+            ACTIVITY: { LABEL: "Activity", ICON: "run", ROUTE: "../tracker/activity" },
+            HEALTH: { LABEL: "General", ICON: "notebook", ROUTE: "../tracker/general" },
         },
 
         LAST_ENTRY: "Last Entry:",
