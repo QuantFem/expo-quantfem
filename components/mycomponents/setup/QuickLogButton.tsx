@@ -14,16 +14,16 @@ const QuickLogButton: React.FC<QuickLogButtonProps>=({onReenter}) => {
     const handleQuickLogPress = () => {
         const formattedDate = LocalFormatter({ date: new Date() }); // Ensure LocalFormatter returns a string    
         Alert.alert(
-            i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_TITLE"),
-            i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_MESSAGE", {
-                action: i18n.t("LABELS.CREATEDAT") + " " + formattedDate, 
+            i18n.t('ALERTS.CONFIRM.ACTION'),
+            i18n.t('ALERTS.CONFIRM.QUICK_LOG', {
+                date: formattedDate
             }),
             [
                 {
-                    text: i18n.t("HOMEPAGE.NOTIFICATIONS.CANCEL_BUTTON"),
+                    text: i18n.t('ALERTS.CONFIRM.CANCEL'),
                 },
                 {
-                    text: i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_LOG_BUTTON"),
+                    text: i18n.t('ALERTS.CONFIRM.LOG_NOW'),
                     onPress: onReenter
                 }
             ]

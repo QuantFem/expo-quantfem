@@ -163,35 +163,59 @@ export const FR_STRINGS={
   TRACKERS: {
     SYMPTOM: {
       ADD: "Ajouter un symptôme",
+      EDIT: "Modifier le symptôme",
       NO_DATA: "Aucun symptôme enregistré",
     },
     MEDICATION: {
       ADD: "Ajouter un médicament",
+      EDIT: "Modifier le médicament",
       NO_DATA: "Aucun médicament enregistré",
     },
     PERIOD: {
       ADD: "Ajouter période/cycle",
+      EDIT: "Modifier période/cycle",
       NO_DATA: "Aucune donnée de période/cycle enregistrée",
     },
     ACTIVITY: {
       ADD: "Ajouter une activité",
+      EDIT: "Modifier l'activité",
       NO_DATA: "Aucune activité enregistrée",
     },
     MOOD: {
       ADD: "Ajouter une humeur",
+      EDIT: "Modifier l'humeur",
       NO_DATA: "Aucune entrée d'humeur enregistrée",
     },
     NUTRITION: {
       ADD: "Ajouter nutrition",
+      EDIT: "Modifier nutrition",
       NO_DATA: "Aucune donnée nutritionnelle enregistrée",
     },
     SLEEP: {
       ADD: "Ajouter sommeil",
+      EDIT: "Modifier sommeil",
       NO_DATA: "Aucune donnée de sommeil enregistrée",
     },
   },
   COMMON: {
-    NA: "Aucun"
+    ADD: "Ajouter",
+    EDIT: "Modifier",
+    DELETE: "Supprimer",
+    CANCEL: "Annuler",
+    SAVE: "Enregistrer",
+    NA: "Données non disponibles",
+    
+    // Common levels
+    INTENSITY: {
+      LOW: "Faible",
+      MEDIUM: "Moyenne",
+      HIGH: "Élevée"
+    },
+    SEVERITY: {
+      MILD: "Légère",
+      MODERATE: "Modérée",
+      SEVERE: "Sévère"
+    }
   },
   HISTORY: {
     TABS: {
@@ -291,7 +315,111 @@ export const FR_STRINGS={
         NEXTDOSE: "Prochaine dose",
         DURATION: "Durée",
       
+  },
+  SLEEP: {
+    INTERRUPTIONS: {
+      TITLE: "Interruptions de Sommeil",
+      ADD_BUTTON: "Ajouter une Interruption",
+      REASONS: {
+        BATHROOM: "Toilettes",
+        NOISE: "Bruit",
+        DISCOMFORT: "Inconfort",
+        ANXIETY: "Anxiété",
+        PAIN: "Douleur",
+        OTHER: "Autre"
+      }
+    }
+  },
+  NUTRITION: {
+    MEAL_TYPES: {
+      MEAL: "Repas",
+      SNACK: "Collation",
+      DRINK: "Boisson"
+    },
+    SERVING_UNITS: {
+      GRAMS: "g",
+      MILLILITERS: "ml",
+      OUNCES: "oz",
+      PIECE: "unité"
+    }
+  },
+  MEDICATION: {
+    ACTIONS: {
+      TAKE: "Prendre",
+      STOP: "Arrêter",
+      CHANGE: "Changer la Dose",
+      RESTART: "Reprendre"
+    },
+    STATUS: {
+      ACTIVE: "Actif",
+      STOPPED: "Arrêté"
+    },
+    ALERTS: {
+      SUCCESS: {
+        ADDED: "✅ Entrée ajoutée avec succès",
+        UPDATED: "✅ Entrée mise à jour avec succès",
+        DELETED: "✅ Entrée supprimée avec succès",
+        STOPPED: "✅ Entrée arrêtée avec succès",
+        RESTARTED: "✅ Entrée redémarrée avec succès",
+        TAKEN: "✅ Entrée enregistrée avec succès",
+        SAVED: "✅ Modifications enregistrées avec succès",
+        NEXT_DOSE: "✅ Prochaine dose prévue pour: {{time}}",
+        IMPORT: "✅ Importation Terminée",
+        IMPORT_DETAILS: "✅ Suivi: {{trackerSuccess}} importés, {{trackerFailed}} échoués.\n✅ Historique: {{historySuccess}} importés, {{historyFailed}} échoués."
+      },
+
+      ERROR: {
+        ADD: "❌ Échec de l'ajout de l'entrée",
+        UPDATE: "❌ Échec de la mise à jour de l'entrée",
+        DELETE: "❌ Échec de la suppression de l'entrée",
+        SAVE: "❌ Échec de l'enregistrement des modifications",
+        GENERIC: "❌ Une erreur s'est produite",
+        IMPORT: "❌ Erreur d'Importation",
+        INVALID_FORMAT: "❌ Format JSON invalide. Veuillez vérifier le contenu du fichier.",
+        REMINDER: "❌ Échec de la configuration du rappel. Veuillez réessayer."
+      },
+
+      // Warning/Validation messages with emojis
+      WARNING: {
+        REQUIRED_FIELDS: "⚠️ Veuillez remplir tous les champs obligatoires",
+        INVALID_INPUT: "⚠️ Entrée Invalide",
+        UNSUPPORTED_VALUE: "⚠️ Valeur non prise en charge",
+        INVALID_DATE: "⚠️ Date sélectionnée invalide",
+        INVALID_TIME: "⚠️ Heure sélectionnée invalide",
+        INVALID_REMINDER: "⚠️ Veuillez entrer un nombre de jours valide pour le rappel."
+      },
+
+      // Empty states
+      NO_ENTRIES: "Aucune entrée disponible",
+      NO_ACTIVE_ENTRIES: "Aucune entrée active",
+      NO_STOPPED_ENTRIES: "Aucune entrée arrêtée",
+
+      // Confirmation messages
+      CONFIRM: {
+        DELETE: "Êtes-vous sûr de vouloir supprimer cette entrée ?",
+        STOP: "Êtes-vous sûr de vouloir arrêter cette entrée ?",
+        RESTART: "Êtes-vous sûr de vouloir redémarrer cette entrée ?",
+        DISCARD: "Êtes-vous sûr de vouloir annuler les modifications ?",
+        ACTION: "Confirmer l'Action",
+        MESSAGE: "Êtes-vous sûr de vouloir enregistrer : {{action}} ?",
+        SCHEDULED_ACTION: "Action Programmée",
+        SCHEDULED_MESSAGE: "Vous devez {{action}} à {{nextReminder}}. Voulez-vous attendre ou l'enregistrer maintenant ?",
+        WAIT: "Attendre",
+        LOG_NOW: "Enregistrer Maintenant",
+        CANCEL: "Annuler",
+        LOG: "Oui, Enregistrer",
+        QUICK_LOG: "Voulez-vous enregistrer une entrée pour {{date}} ?"
+      }
+    }
+  },
+  CYCLE: {
+    FLOW: {
+      NONE: "Aucun",
+      LIGHT: "Léger",
+      MEDIUM: "Moyen",
+      HEAVY: "Abondant",
+      SPOTTING: "Spotting"
+    }
   }
-  
 };
 

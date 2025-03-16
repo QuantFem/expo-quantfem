@@ -605,6 +605,7 @@ const SleepEntriesScreen: React.FC = () => {
                           await loadSleepEntries();
                           setModalVisible(false);
                           setSelectedEntry(null);
+                          Alert.alert(i18n.t('ALERTS.SUCCESS.SAVED'));
                         }
                       } else {
                         // Create new entry
@@ -612,7 +613,7 @@ const SleepEntriesScreen: React.FC = () => {
                       }
                     } catch (error) {
                       console.error('Error saving sleep entry:', error);
-                      Alert.alert('Error', 'Failed to save sleep entry');
+                      Alert.alert(i18n.t('ALERTS.ERROR.SAVE'));
                     }
                   }}
                 >

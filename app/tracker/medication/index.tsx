@@ -5,6 +5,7 @@ import MedicationsScreen from './medication';
 import useThemedStyles from '@/components/hooks/useThemedStyles';
 import { useNavigation } from '@react-navigation/native';
 import BackButton from '@/components/mycomponents/setup/BackButton';
+import i18n from "@/components/mycomponents/setup/localization/localization";
 
 enableLayoutAnimations(true);
 
@@ -32,7 +33,9 @@ const MedicationTabs = () => {
               viewMode === mode && styles.selectedSelectionButtonText,
             ]}
           >
-            {mode === 'active' ? 'Active' : 'Stopped'}
+            {mode === 'active' 
+              ? i18n.t('MEDICATION.STATUS.ACTIVE')
+              : i18n.t('MEDICATION.STATUS.STOPPED')}
           </Text>
         </TouchableOpacity>
       ))}

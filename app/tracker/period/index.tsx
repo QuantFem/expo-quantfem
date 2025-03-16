@@ -11,7 +11,7 @@ import QuickLogButton from "@/components/mycomponents/setup/QuickLogButton";
 import { useNavigation } from "@react-navigation/native";
 import BackButton from "@/components/mycomponents/setup/BackButton";
 
-const FLOW_OPTIONS = ['none', 'light', 'medium', 'heavy'];
+const FLOW_OPTIONS = ['NONE', 'LIGHT', 'MEDIUM', 'HEAVY', 'SPOTTING'];
 
 // Update the MOOD_OPTIONS to match the database constraints
 const MOOD_OPTIONS = [
@@ -188,25 +188,24 @@ const CycleEntriesScreen: React.FC = () => {
         <TouchableOpacity
           key={flow}
           style={[
-            styles.roundButton, // Uses the existing button style
+            styles.roundButton,
             (isModalVisible ? selectedEntry?.flow : newEntry.flow) === flow &&
-            styles.roundButtonActive // Applies active state
+            styles.roundButtonActive
           ]}
           onPress={() => handleFlowSelection(flow)}
         >
           <Text
             style={[
-              styles.buttonText, // Ensures readability
+              styles.buttonText,
               (isModalVisible ? selectedEntry?.flow : newEntry.flow) === flow &&
               styles.selectedSelectionButtonText
             ]}
           >
-            {flow}
+            {i18n.t(`CYCLE.FLOW.${flow}`)}
           </Text>
         </TouchableOpacity>
       ))}
     </View>
-
   );
 
   const renderMoodOptions = () => (
@@ -459,23 +458,21 @@ const CycleEntriesScreen: React.FC = () => {
             style={styles.modalContainer}
           >
             <View style={styles.modalContent}>
-              {/* Header */}
               <View style={styles.buttonContainer}>
                 <Text style={styles.modalHeader}>
-                  {isModalVisible ? "Edit Cycle Entry" : "Add New Cycle Entry"}
+                  {isModalVisible ? i18n.t('COMMON.EDIT') : i18n.t('COMMON.ADD')}
                 </Text>
-                <TouchableOpacity onPress={() => {
-                  setModalVisible(false);
-                  setAddModalVisible(false);
-                }}>
-                  <Text style={styles.cardHeader}>✕</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    setModalVisible(false);
+                    setAddModalVisible(false);
+                  }}
+                >
+                  <Text style={styles.cardHeader}>{i18n.t('GENERAL_TRACKER.MODAL.CLOSE')}</Text>
                 </TouchableOpacity>
               </View>
 
-              {/* Scrollable Content */}
               <ScrollView contentContainerStyle={styles.scrollContainer}>
-
-                {/* Start Date Picker */}
                 <Text style={styles.text}>{i18n.t('LABELS.STARTDATE')}</Text>
                 <View style={styles.buttonContainer}>
                   <TouchableOpacity style={styles.button} onPress={() => setShowStartDatePicker(true)}>
@@ -493,7 +490,6 @@ const CycleEntriesScreen: React.FC = () => {
                   />
                 )}
 
-                {/* End Date Picker */}
                 <Text style={styles.text}>{i18n.t('LABELS.ENDDATE')}</Text>
                 <View style={styles.buttonContainer}>
                   <TouchableOpacity style={styles.button} onPress={() => setShowEndDatePicker(true)}>
@@ -511,7 +507,6 @@ const CycleEntriesScreen: React.FC = () => {
                   />
                 )}
 
-                {/* Cycle Length Input */}
                 <Text style={styles.text}>{i18n.t('LABELS.CYCLELENGTH')}</Text>
                 <TextInput
                   style={styles.input}
@@ -527,15 +522,12 @@ const CycleEntriesScreen: React.FC = () => {
                   }}
                 />
 
-                {/* Flow Options */}
                 <Text style={styles.text}>{i18n.t('LABELS.FLOW')}</Text>
                 {renderFlowOptions()}
 
-                {/* Mood Options */}
                 <Text style={styles.text}>{i18n.t('LABELS.MOOD')}</Text>
                 {renderMoodOptions()}
 
-                {/* Symptoms Input */}
                 <Text style={styles.text}>{i18n.t('LABELS.SYMPTOMS')}</Text>
                 <TextInput
                   style={[styles.input]}
@@ -551,8 +543,6 @@ const CycleEntriesScreen: React.FC = () => {
                   }}
                 />
 
-
-                {/* Action Buttons */}
                 <View style={styles.buttonContainer}>
                   <TouchableOpacity
                     style={styles.button}

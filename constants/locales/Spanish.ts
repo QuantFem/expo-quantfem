@@ -176,36 +176,60 @@ export const ES_STRINGS={
   },
   TRACKERS: {
     SYMPTOM: {
-      ADD: "Añadir síntoma",
+      ADD: "Agregar Síntoma",
+      EDIT: "Editar Síntoma",
       NO_DATA: "No hay síntomas registrados",
     },
     MEDICATION: {
-      ADD: "Añadir medicación",
-      NO_DATA: "No hay medicaciones registradas",
+      ADD: "Agregar Medicamento",
+      EDIT: "Editar Medicamento",
+      NO_DATA: "No hay medicamentos registrados",
     },
     PERIOD: {
-      ADD: "Añadir período/ciclo",
+      ADD: "Agregar Período/Ciclo",
+      EDIT: "Editar Período/Ciclo",
       NO_DATA: "No hay datos de período/ciclo registrados",
     },
     ACTIVITY: {
-      ADD: "Añadir actividad",
+      ADD: "Agregar Actividad",
+      EDIT: "Editar Actividad",
       NO_DATA: "No hay actividades registradas",
     },
     MOOD: {
-      ADD: "Añadir estado de ánimo",
-      NO_DATA: "No hay entradas de estado de ánimo registradas",
+      ADD: "Agregar Estado de Ánimo",
+      EDIT: "Editar Estado de Ánimo",
+      NO_DATA: "No hay registros de estado de ánimo",
     },
     NUTRITION: {
-      ADD: "Añadir nutrición",
+      ADD: "Agregar Nutrición",
+      EDIT: "Editar Nutrición",
       NO_DATA: "No hay datos de nutrición registrados",
     },
     SLEEP: {
-      ADD: "Añadir sueño",
+      ADD: "Agregar Sueño",
+      EDIT: "Editar Sueño",
       NO_DATA: "No hay datos de sueño registrados",
     },
   },
   COMMON: {
-    NA: "Ninguno"
+    ADD: "Agregar",
+    EDIT: "Editar",
+    DELETE: "Eliminar",
+    CANCEL: "Cancelar",
+    SAVE: "Guardar",
+    NA: "No hay datos disponibles",
+    
+    // Common levels
+    INTENSITY: {
+      LOW: "Baja",
+      MEDIUM: "Media",
+      HIGH: "Alta"
+    },
+    SEVERITY: {
+      MILD: "Leve",
+      MODERATE: "Moderada",
+      SEVERE: "Severa"
+    }
   },
   HISTORY: {
     TABS: {
@@ -307,8 +331,137 @@ export const ES_STRINGS={
     DURATION: "Duración",
   },
 
- 
-  
+  SLEEP: {
+    // ... existing sleep translations ...
+    INTERRUPTIONS: {
+      TITLE: "Interrupciones del Sueño",
+      ADD_BUTTON: "Agregar Interrupción",
+      REASONS: {
+        BATHROOM: "Baño",
+        NOISE: "Ruido",
+        DISCOMFORT: "Malestar",
+        ANXIETY: "Ansiedad",
+        PAIN: "Dolor",
+        OTHER: "Otro"
+      }
+    }
+  },
+
+  NUTRITION: {
+    // ... existing nutrition translations ...
+    MEAL_TYPES: {
+      MEAL: "Comida",
+      SNACK: "Bocadillo",
+      DRINK: "Bebida"
+    },
+    SERVING_UNITS: {
+      GRAMS: "g",
+      MILLILITERS: "ml",
+      OUNCES: "oz",
+      PIECE: "unidad"
+    }
+  },
+
+  MEDICATION: {
+    ACTIONS: {
+      TAKE: "Tomar",
+      STOP: "Detener",
+      CHANGE: "Cambiar Dosis",
+      RESTART: "Reiniciar"
+    },
+    STATUS: {
+      ACTIVE: "Activo",
+      STOPPED: "Detenido"
+    },
+    ALERTS: {
+      // General success messages
+      ADDED_SUCCESS: "✅ Entrada agregada con éxito",
+      UPDATED_SUCCESS: "✅ Entrada actualizada con éxito",
+      DELETED_SUCCESS: "✅ Entrada eliminada con éxito",
+      STOPPED_SUCCESS: "✅ Entrada detenida con éxito",
+      RESTARTED_SUCCESS: "✅ Entrada reiniciada con éxito",
+      TAKEN_SUCCESS: "✅ Entrada registrada con éxito. Próxima programada para ",
+      
+      // General error messages
+      ADD_FAILED: "❌ Error al agregar entrada",
+      UPDATE_FAILED: "❌ Error al actualizar entrada",
+      DELETE_FAILED: "❌ Error al eliminar entrada",
+      SAVE_ERROR: "Ocurrió un error al guardar",
+      
+      // Validation messages
+      REQUIRED_FIELDS: "⚠️ Por favor, complete todos los campos requeridos",
+      INVALID_INPUT: "⚠️ Entrada no válida",
+      UNSUPPORTED_VALUE: "⚠️ Valor no soportado",
+      
+      // Empty states
+      NO_ENTRIES: "No hay entradas disponibles",
+      NO_ACTIVE_ENTRIES: "No hay entradas activas",
+      NO_STOPPED_ENTRIES: "No hay entradas detenidas",
+
+      SUCCESS: {
+        ADDED: "✅ Entrada agregada exitosamente",
+        UPDATED: "✅ Entrada actualizada exitosamente",
+        DELETED: "✅ Entrada eliminada exitosamente",
+        STOPPED: "✅ Entrada detenida exitosamente",
+        RESTARTED: "✅ Entrada reiniciada exitosamente",
+        TAKEN: "✅ Entrada registrada exitosamente",
+        SAVED: "✅ Cambios guardados exitosamente",
+        NEXT_DOSE: "✅ Próxima dosis programada para: {{time}}",
+        IMPORT: "✅ Importación Completada",
+        IMPORT_DETAILS: "✅ Rastreador: {{trackerSuccess}} importados, {{trackerFailed}} fallidos.\n✅ Historial: {{historySuccess}} importados, {{historyFailed}} fallidos."
+      },
+
+      // Error messages with emojis
+      ERROR: {
+        ADD: "❌ Error al agregar entrada",
+        UPDATE: "❌ Error al actualizar entrada",
+        DELETE: "❌ Error al eliminar entrada",
+        SAVE: "❌ Error al guardar cambios",
+        GENERIC: "❌ Ha ocurrido un error",
+        IMPORT: "❌ Error de Importación",
+        INVALID_FORMAT: "❌ Formato JSON inválido. Por favor, verifica el contenido del archivo.",
+        REMINDER: "❌ Error al establecer el recordatorio. Por favor, inténtalo de nuevo."
+      },
+
+      // Warning/Validation messages with emojis
+      WARNING: {
+        REQUIRED_FIELDS: "⚠️ Por favor, completa todos los campos requeridos",
+        INVALID_INPUT: "⚠️ Entrada Inválida",
+        UNSUPPORTED_VALUE: "⚠️ Valor no soportado",
+        INVALID_DATE: "⚠️ Fecha inválida seleccionada",
+        INVALID_TIME: "⚠️ Hora inválida seleccionada",
+        INVALID_REMINDER: "⚠️ Por favor, ingresa un número válido de días para el recordatorio."
+      },
+
+      // Confirmation messages
+      CONFIRM: {
+        DELETE: "¿Estás seguro de que quieres eliminar esta entrada?",
+        STOP: "¿Estás seguro de que quieres detener esta entrada?",
+        RESTART: "¿Estás seguro de que quieres reiniciar esta entrada?",
+        DISCARD: "¿Estás seguro de que quieres descartar los cambios?",
+        ACTION: "Confirmar Acción",
+        MESSAGE: "¿Estás seguro de que quieres registrar: {{action}}?",
+        SCHEDULED_ACTION: "Acción Programada",
+        SCHEDULED_MESSAGE: "Tienes programado {{action}} a las {{nextReminder}}. ¿Quieres esperar o registrarlo ahora?",
+        WAIT: "Esperar",
+        LOG_NOW: "Registrar Ahora",
+        CANCEL: "Cancelar",
+        LOG: "Sí, Registrar",
+        QUICK_LOG: "¿Quieres registrar una entrada para {{date}}?"
+      },
+    },
+  },
+
+  CYCLE: {
+    // ... existing cycle translations ...
+    FLOW: {
+      NONE: "Ninguno",
+      LIGHT: "Ligero",
+      MEDIUM: "Medio",
+      HEAVY: "Abundante",
+      SPOTTING: "Manchado"
+    }
+  },
 
 };
 

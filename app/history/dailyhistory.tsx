@@ -4,6 +4,7 @@ import db from "@/storage/db"; // Import the database instance
 import useThemedStyles from "@/components/hooks/useThemedStyles";
 import LocalFormatter from "@/components/mycomponents/setup/formatDate";
 import i18n from "@/components/mycomponents/setup/localization/localization";
+import { UserService } from "@/storage/UserService";
 
 interface HistoryEntry {
   id: string;
@@ -27,38 +28,27 @@ const HistoryLog: React.FC=() => {
   // ✅ Fetch and store full history without displaying all at once
   const loadHistory=async () => {
     try {
-      const results=await db.getAllAsync("SELECT * FROM user_logs ORDER BY timestamp DESC;");
-
-      if(!results||!Array.isArray(results)) {
-        console.error("❌ Error: Unexpected response from SQLite query");
-        return;
-      }
-
-      const formattedHistory: HistoryEntry[]=results.map((row: any) => ({
-        id: row.id.toString(),
-        action: row.action,
-        timestamp: new Date(row.timestamp).toISOString(),
-        nextChange: row.next_change? new Date(row.next_change).toISOString():undefined,
-      }));
-
-      const groupedHistory: {[key: string]: HistoryEntry[]}={};
-
-      formattedHistory.forEach((entry) => {
-        const dateKey=entry.timestamp.split("T")[0]; // Extract YYYY-MM-DD
-        if(!groupedHistory[dateKey]) {
-          groupedHistory[dateKey]=[];
+      const logs = await UserService.fetchUserLogs();
+      
+      // Group logs by date
+      const groupedHistory: { [key: string]: HistoryEntry[] } = {};
+      logs.forEach((entry) => {
+        const dateKey = entry.timestamp.split("T")[0]; // Extract YYYY-MM-DD
+        if (!groupedHistory[dateKey]) {
+          groupedHistory[dateKey] = [];
         }
         groupedHistory[dateKey].push(entry);
       });
 
-      const sortedHistory=Object.entries(groupedHistory).sort(([dateA],[dateB]) =>
-        new Date(dateB).getTime()-new Date(dateA).getTime()
+      // Sort by date
+      const sortedHistory = Object.entries(groupedHistory).sort(([dateA], [dateB]) =>
+        new Date(dateB).getTime() - new Date(dateA).getTime()
       );
 
-      setFullHistory(sortedHistory); // ✅ Store all data but don't display all
-      setHistoryList(sortedHistory.slice(0,loadedCount)); // ✅ Show only first 10
-    } catch(error) {
-      console.error("❌ Error fetching history:",error);
+      setFullHistory(sortedHistory);
+      setHistoryList(sortedHistory.slice(0, loadedCount));
+    } catch (error) {
+      console.error("❌ Error loading history:", error);
     }
   };
 
@@ -69,7 +59,25 @@ const HistoryLog: React.FC=() => {
     setHistoryList(fullHistory.slice(0,newCount)); // ✅ Append new data without resetting
   };
 
+  const handleDelete = async (id: string) => {
+    try {
+      const success = await UserService.deleteHistoryEntry(id);
+      if (success) {
+        const updateHistory = (prevHistory: [string, HistoryEntry[]][]) => 
+          prevHistory
+            .map(([date, entries]): [string, HistoryEntry[]] => [
+              date,
+              entries.filter(entry => entry.id !== id)
+            ])
+            .filter(([_, entries]) => entries.length > 0);
 
+        setFullHistory(updateHistory);
+        setHistoryList(updateHistory);
+      }
+    } catch (error) {
+      console.error("❌ Error deleting entry:", error);
+    }
+  };
 
   return (
     <FlatList

@@ -31,6 +31,16 @@ const SymptomEntriesScreen: React.FC = () => {
     startTime: new Date(),
   });
 
+  // Update the severity options to use constants with proper typing
+  const SEVERITY_OPTIONS = ['MILD', 'MODERATE', 'SEVERE'] as const;
+  type SeverityType = 'Mild' | 'Moderate' | 'Severe';
+
+  const severityMapping: Record<typeof SEVERITY_OPTIONS[number], SeverityType> = {
+    'MILD': 'Mild',
+    'MODERATE': 'Moderate',
+    'SEVERE': 'Severe'
+  };
+
   // Initial load
   useEffect(() => {
     loadSymptoms();
@@ -261,10 +271,10 @@ const SymptomEntriesScreen: React.FC = () => {
             <View style={styles.modalContent}>
               <View style={styles.buttonContainer}>
                 <Text style={styles.modalHeader}>
-                  {selectedSymptom ? "Edit Symptom" : "Add Symptom"}
+                  {selectedSymptom ? i18n.t('COMMON.EDIT') : i18n.t('COMMON.ADD')}
                 </Text>
                 <TouchableOpacity onPress={() => setModalVisible(false)}>
-                  <Text style={styles.cardHeader}>✕</Text>
+                  <Text style={styles.cardHeader}>{i18n.t('GENERAL_TRACKER.MODAL.CLOSE')}</Text>
                 </TouchableOpacity>
               </View>
 
@@ -286,10 +296,12 @@ const SymptomEntriesScreen: React.FC = () => {
                 {/* Severity */}
                 <View style={styles.section}>
                   <Text style={styles.text}>{i18n.t('LABELS.SEVERITY')}</Text>
-                  <View style={styles.buttonContainer}>
-                    {(["Mild", "Moderate", "Severe"] as const).map((severity) => (
+                  
+                  {SEVERITY_OPTIONS.map((severityKey) => {
+                    const severity = severityMapping[severityKey];
+                    return (
                       <TouchableOpacity
-                        key={severity}
+                        key={severityKey}
                         style={[
                           styles.roundButton,
                           (selectedSymptom?.severity === severity ||
@@ -307,10 +319,10 @@ const SymptomEntriesScreen: React.FC = () => {
                           }
                         }}
                       >
-                        <Text style={styles.buttonText}>{severity}</Text>
+                        <Text style={styles.buttonText}>{i18n.t(`COMMON.SEVERITY.${severityKey}`)}</Text>
                       </TouchableOpacity>
-                    ))}
-                  </View>
+                    );
+                  })}
                 </View>
 
                 {/* Start Time Selector */}

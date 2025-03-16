@@ -11,6 +11,7 @@ import {setupDatabase} from "@/storage/db";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {StatusBar} from "expo-status-bar";
 import useThemedStyles from "@/components/hooks/useThemedStyles";
+import { UserService } from "@/storage/UserService";
 
 export {ErrorBoundary} from "expo-router";
 
@@ -26,7 +27,7 @@ export default function RootLayout() {
       await SplashScreen.preventAutoHideAsync();
 
       // Setup database
-      const success=await setupDatabase();
+      const success=await UserService.initializeStorage();
       if(success) {
         console.log("Database ready for use!");
       } else {

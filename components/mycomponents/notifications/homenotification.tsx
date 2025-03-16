@@ -55,14 +55,14 @@ export const promptAndScheduleReminder = async ({
             } catch (error) {
               console.error("❌ Error setting reminder:", error);
               Alert.alert(
-                i18n.t("HOMEPAGE.NOTIFICATIONS.ERROR_TITLE"),
-                i18n.t("HOMEPAGE.NOTIFICATIONS.ERROR_REMINDER_MESSAGE")
+                i18n.t('ALERTS.ERROR.GENERIC'),
+                i18n.t('ALERTS.ERROR.REMINDER')
               );
             }
           } else {
             Alert.alert(
-              i18n.t("HOMEPAGE.NOTIFICATIONS.INVALID_INPUT_TITLE"),
-              i18n.t("HOMEPAGE.NOTIFICATIONS.INVALID_INPUT_MESSAGE")
+              i18n.t('ALERTS.WARNING.INVALID_INPUT'),
+              i18n.t('ALERTS.WARNING.INVALID_REMINDER')
             );
           }
         },

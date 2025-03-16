@@ -1,4 +1,4 @@
-import db,{deleteHistoryEntry,logUserAction} from "@/storage/db";
+import { UserService } from "@/storage/UserService";
 import React,{useState,useEffect} from "react";
 import {
   View,
@@ -44,20 +44,7 @@ const HomeScreen: React.FC=() => {
   };
 
   const logAction=(action: string,reminderFrequency?: number) => {
-    const actionVerbMap: {[key: string]: string}={
-      Peed: "pee",
-      Pooped: "poo",
-      "Drank Water": "drink water",
-      "Drank Coffee": "drink coffee",
-      "Drank Tea": "drink tea",
-      "Took Painkiller": "take a painkiller",
-      "Changed Tampon": "change your tampon",
-      "Changed Pad": "change your pad",
-      "Changed Menstrual Cup": "change your menstrual cup",
-      "Changed Period Underwear": "change your period underwear",
-    };
-
-    const formattedAction=actionVerbMap[action]||action.toLowerCase();
+    const formattedAction = i18n.t(`HOMEPAGE.ACTION_VERBS.${action.toUpperCase().replace(/\s+/g, '_')}`) || action.toLowerCase();
 
     const insights=generateInsights();
     const existingInsight=insights.find(insight => insight.action===action);
@@ -65,17 +52,17 @@ const HomeScreen: React.FC=() => {
 
     if(nextReminder) {
       Alert.alert(
-        i18n.t("HOMEPAGE.NOTIFICATIONS.SCHEDULED_TITLE"),
-        i18n.t("HOMEPAGE.NOTIFICATIONS.SCHEDULED_MESSAGE",{
+        i18n.t('ALERTS.CONFIRM.SCHEDULED_ACTION'),
+        i18n.t('ALERTS.CONFIRM.SCHEDULED_MESSAGE', {
           action: formattedAction,
-          nextReminder,
+          nextReminder
         }),
         [
-          {text: i18n.t("HOMEPAGE.NOTIFICATIONS.WAIT_BUTTON"),style: "cancel"},
+          {text: i18n.t('ALERTS.CONFIRM.WAIT'), style: "cancel"},
           {
-            text: i18n.t("HOMEPAGE.NOTIFICATIONS.LOG_NOW_BUTTON"),
+            text: i18n.t('ALERTS.CONFIRM.LOG_NOW'),
             onPress: async () => {
-              logUserAction(action);
+              await UserService.logUserAction(action);
               loadHistory();
             },
           },
@@ -83,16 +70,16 @@ const HomeScreen: React.FC=() => {
       );
     } else {
       Alert.alert(
-        i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_TITLE"),
-        i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_MESSAGE",{
-          action: action,
+        i18n.t('ALERTS.CONFIRM.ACTION'),
+        i18n.t('ALERTS.CONFIRM.MESSAGE', {
+          action: action
         }),
         [
-          {text: i18n.t("HOMEPAGE.NOTIFICATIONS.CANCEL_BUTTON"),style: "cancel"},
+          {text: i18n.t('ALERTS.CONFIRM.CANCEL'), style: "cancel"},
           {
-            text: i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_LOG_BUTTON"),
+            text: i18n.t('ALERTS.CONFIRM.LOG'),
             onPress: async () => {
-              logUserAction(action);
+              await UserService.logUserAction(action);
               loadHistory();
 
               if(reminderFrequency) {
@@ -112,24 +99,7 @@ const HomeScreen: React.FC=() => {
 
   const loadHistory=async () => {
     try {
-      const results=await db.getAllAsync(
-        "SELECT * FROM user_logs ORDER BY timestamp DESC;",
-      );
-
-      if(!results||!Array.isArray(results)) {
-        console.error("❌ Error: Unexpected response from SQLite query");
-        return;
-      }
-
-      const formattedHistory: HistoryEntry[]=results.map((row: any) => ({
-        id: row.id.toString(),
-        action: row.action,
-        timestamp: new Date(row.timestamp).toISOString(),
-        nextChange: row.next_change
-          ? new Date(row.next_change).toISOString()
-          :undefined,
-      }));
-
+      const formattedHistory = await UserService.fetchUserLogs();
       setHistory(formattedHistory);
     } catch(error) {
       console.error("❌ Error fetching history:",error);
@@ -190,7 +160,7 @@ const HomeScreen: React.FC=() => {
           text: i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_CONFIRM"),
           style: "destructive",
           onPress: async () => {
-            const success = await deleteHistoryEntry(entryToDelete.id);
+            const success = await UserService.deleteHistoryEntry(entryToDelete.id);
 
             if (success) {
               setHistory((prevHistory) =>
