@@ -201,6 +201,7 @@ export const EN_STRINGS = {
             TITLE: "Data Management",
             EXPORT_DATA: "Export Data",
             IMPORT_DATA: "Import Data",
+            DELETE_ALL_ENTRIES: "Delete All Entries",
         },
 
         HELP_SUPPORT: {
@@ -450,15 +451,19 @@ export const EN_STRINGS = {
         CONFIRM: {
             RESET: "Reset All Data",
             RESET_MESSAGE: "This will permanently delete all your data. Are you sure you want to continue?",
+            DELETE_ALL: "Delete All Entries",
+            DELETE_ALL_MESSAGE: "Are you sure you want to delete all entries? This action cannot be undone. Your insights history will be preserved.",
         },
         SUCCESS: {
             EXPORT: "Data Exported",
             EXPORT_MESSAGE: "Your data has been successfully exported and encrypted.",
             RESET: "Data Reset Complete",
+            DELETE_ALL: "All entries have been deleted successfully.",
         },
         ERROR: {
             EXPORT: "Failed to export data",
             RESET: "Failed to reset data",
+            DELETE_ALL: "Failed to delete entries. Please try again.",
         },
     },
 } as const;

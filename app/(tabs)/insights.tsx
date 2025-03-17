@@ -1,99 +1,83 @@
 import React,{useEffect,useState} from 'react';
-import {View,Text,ScrollView,Alert,TouchableOpacity,StyleSheet} from 'react-native';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
+import {View,Text,ScrollView,Alert,TouchableOpacity} from 'react-native';
 import i18n from '@/components/mycomponents/setup/localization/localization';
 import {formatDistanceToNow,format} from 'date-fns';
 import useThemedStyles from "@/components/hooks/useThemedStyles";
 import {CalendarDataService,CalendarItem} from '@/storage/CalendarService';
 import {exportData} from "../history/exportData";
-import {UserService} from '@/storage/UserService';
+import {InsightsService, InsightsData, InsightsDataInput} from '@/storage/InsightsService';
+import { useFocusEffect } from '@react-navigation/native';
 
-interface InsightsData {
-    totalEntries: number;
-    dateRange: {
-        start: string;
-        end: string;
-    };
-    categories: {
-        symptoms: number;
-        medications: number;
-        cycles: number;
-        moods: number;
-        sleep: number;
-        nutrition: number;
-        health: number;
-    };
-    trends: {
-        mostTrackedSymptom: string;
-        commonMoodPattern: string;
-        averageSleepHours: number;
-        medicationAdherence: number;
-        weightTrend?: {
-            current: number;
-            change: number;
-            period: string;
-        };
-        bloodPressureTrend?: {
-            systolic: {avg: number; change: number};
-            diastolic: {avg: number; change: number};
-            period: string;
-        };
-    };
-    streaks: {
-        current: number;
-        longest: number;
-        lastActivity: string;
-    };
-    correlations: {
-        cycleSymptoms: {symptom: string; frequency: number}[];
-        sleepNutrition: {food: string; avgSleepQuality: number}[];
-        moodSymptoms: {symptom: string; mood: string; frequency: number}[];
-        nutritionSymptoms: {food: string; symptom: string; frequency: number}[];
-        activitySleep: {activity: string; avgSleepQuality: number}[];
-        medicationEffectiveness: {medication: string; symptomReduction: number}[];
-        activityMood: {activity: string; mood: string; frequency: number}[];
-        healthSymptoms: {health: string; symptom: string; frequency: number}[];
-        healthMood: {health: string; mood: string; frequency: number}[];
-        nutritionWeight: {food: string; weightChange: number}[];
-    };
-    storageInfo?: {
-        databaseSize: number;
-        availableSpace: number;
-        isStorageCritical: boolean;
-    };
-}
 
-const extraStyles=StyleSheet.create({
-    exportButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#4CAF50',
-        padding: 12,
-        borderRadius: 8,
-        marginBottom: 16,
-        justifyContent: 'center',
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        marginLeft: 8,
-        fontWeight: '600',
-    }
-});
 
 export default function InsightsScreen() {
     const [insights,setInsights]=useState<InsightsData|null>(null);
     const [loading,setLoading]=useState(true);
     const styles=useThemedStyles();
 
+    // Initial load
     useEffect(() => {
         loadInsights();
     },[]);
+
+    // Refresh on focus
+    useFocusEffect(
+        React.useCallback(() => {
+            loadInsights();
+        }, [])
+    );
 
     const loadInsights=async () => {
         try {
             setLoading(true);
             const items=await CalendarDataService.getAllCalendarItems();
+
+            if (items.length === 0) {
+                // If no items exist, create empty insights
+                const emptyInsights: InsightsDataInput = {
+                    totalEntries: 0,
+                    dateRange: {
+                        start: new Date().toISOString(),
+                        end: new Date().toISOString(),
+                    },
+                    categories: {
+                        symptoms: 0,
+                        medications: 0,
+                        cycles: 0,
+                        moods: 0,
+                        sleep: 0,
+                        nutrition: 0,
+                        health: 0
+                    },
+                    trends: {
+                        mostTrackedSymptom: i18n.t('COMMON.NO_DATA_YET'),
+                        commonMoodPattern: i18n.t('COMMON.NO_DATA_YET'),
+                        averageSleepHours: 0,
+                        medicationAdherence: 0
+                    },
+                    streaks: {
+                        current: 0,
+                        longest: 0,
+                        lastActivity: new Date().toISOString()
+                    },
+                    correlations: {
+                        cycleSymptoms: [],
+                        sleepNutrition: [],
+                        moodSymptoms: [],
+                        nutritionSymptoms: [],
+                        activitySleep: [],
+                        medicationEffectiveness: [],
+                        activityMood: [],
+                        healthSymptoms: [],
+                        healthMood: [],
+                        nutritionWeight: []
+                    }
+                };
+                await InsightsService.saveInsights(emptyInsights);
+                setInsights(await InsightsService.getLatestInsights());
+                setLoading(false);
+                return;
+            }
 
             // Calculate statistics similar to Dr Reports
             const activitySummary={count: 0,totalDuration: 0};
@@ -524,7 +508,7 @@ export default function InsightsScreen() {
                 };
             }
 
-            const processedInsights: InsightsData={
+            const processedInsights: InsightsDataInput={
                 totalEntries: items.length,
                 dateRange: {
                     start: items[0]?.date.toISOString()||new Date().toISOString(),
@@ -552,18 +536,38 @@ export default function InsightsScreen() {
                     longest: longestStreak,
                     lastActivity: sortedDates[sortedDates.length-1]||new Date().toISOString(),
                 },
-                correlations,
-                storageInfo: {
-                    databaseSize: 0, // Assuming a default value, actual implementation needed
-                    availableSpace: 0, // Assuming a default value, actual implementation needed
-                    isStorageCritical: false, // Assuming a default value, actual implementation needed
-                },
+                correlations
             };
 
-            setInsights(processedInsights);
+            // Save insights to database
+            await InsightsService.saveInsights(processedInsights);
+            
+            // Clean up old insights, keeping only the last 10
+            await InsightsService.deleteOldInsights(10);
+
+            // Get the latest insights with timestamps
+            const savedInsights = await InsightsService.getLatestInsights();
+            if (!savedInsights) {
+                throw new Error('Failed to retrieve saved insights');
+            }
+            setInsights(savedInsights);
+
         } catch(error) {
             console.error('Failed to load insights:',error);
-            Alert.alert(i18n.t('ALERTS.ERROR.GENERIC'));
+            // Try to load the latest saved insights if current calculation fails
+            try {
+                const savedInsights = await InsightsService.getLatestInsights();
+                if (savedInsights) {
+                    setInsights(savedInsights);
+                    return;
+                }
+            } catch (dbError) {
+                console.error('Failed to load saved insights:', dbError);
+            }
+            Alert.alert(
+                i18n.t('ALERTS.ERROR.TITLE'),
+                i18n.t('ALERTS.ERROR.LOAD_INSIGHTS')
+            );
         } finally {
             setLoading(false);
         }
@@ -574,17 +578,7 @@ export default function InsightsScreen() {
             await exportData();
             Alert.alert(
                 i18n.t('ALERTS.SUCCESS.EXPORT'),
-                i18n.t('ALERTS.SUCCESS.EXPORT_MESSAGE'),
-                [
-                    {
-                        text: i18n.t('ALERTS.CONFIRM.DELETE_AFTER_EXPORT'),
-                        onPress: handleResetData
-                    },
-                    {
-                        text: i18n.t('ALERTS.CONFIRM.KEEP_DATA'),
-                        style: 'cancel'
-                    }
-                ]
+                i18n.t('ALERTS.SUCCESS.EXPORT_MESSAGE')
             );
         } catch(error) {
             console.error('Export failed:',error);
@@ -592,28 +586,87 @@ export default function InsightsScreen() {
         }
     };
 
-    const handleResetData=async () => {
+    const handleDeleteAllEntries = async () => {
         Alert.alert(
-            i18n.t('ALERTS.CONFIRM.RESET'),
-            i18n.t('ALERTS.CONFIRM.RESET_MESSAGE'),
+            i18n.t('ALERTS.CONFIRM.DELETE_ALL'),
+            i18n.t('ALERTS.CONFIRM.DELETE_ALL_MESSAGE'),
             [
                 {
-                    text: i18n.t('ALERTS.CONFIRM.YES'),
+                    text: i18n.t('COMMON.CANCEL'),
+                    style: 'cancel',
+                },
+                {
+                    text: i18n.t('COMMON.CONFIRM'),
                     style: 'destructive',
                     onPress: async () => {
                         try {
-                            await UserService.deleteAllSettings();
-                            Alert.alert(i18n.t('ALERTS.SUCCESS.RESET'));
-                            loadInsights();
-                        } catch(error) {
-                            console.error('Reset failed:',error);
-                            Alert.alert(i18n.t('ALERTS.ERROR.RESET'));
+                            // Delete all calendar entries but preserve insights
+                            await CalendarDataService.deleteAllEntries();
+                            
+                            // Add a new insights entry to mark the deletion point
+                            // but keep all previous insights for historical reference
+                            const newInsights: InsightsDataInput = {
+                                totalEntries: 0,
+                                dateRange: {
+                                    start: new Date().toISOString(),
+                                    end: new Date().toISOString(),
+                                },
+                                categories: {
+                                    symptoms: 0,
+                                    medications: 0,
+                                    cycles: 0,
+                                    moods: 0,
+                                    sleep: 0,
+                                    nutrition: 0,
+                                    health: 0
+                                },
+                                trends: {
+                                    mostTrackedSymptom: i18n.t('COMMON.NO_DATA_YET'),
+                                    commonMoodPattern: i18n.t('COMMON.NO_DATA_YET'),
+                                    averageSleepHours: 0,
+                                    medicationAdherence: 0
+                                },
+                                streaks: {
+                                    current: 0,
+                                    longest: insights ? insights.streaks.longest : 0, // Preserve longest streak
+                                    lastActivity: new Date().toISOString()
+                                },
+                                correlations: {
+                                    cycleSymptoms: [],
+                                    sleepNutrition: [],
+                                    moodSymptoms: [],
+                                    nutritionSymptoms: [],
+                                    activitySleep: [],
+                                    medicationEffectiveness: [],
+                                    activityMood: [],
+                                    healthSymptoms: [],
+                                    healthMood: [],
+                                    nutritionWeight: []
+                                }
+                            };
+                            
+                            // Save the new insights entry while keeping historical ones
+                            await InsightsService.saveInsights(newInsights);
+                            
+                            Alert.alert(
+                                i18n.t('COMMON.SUCCESS'),
+                                i18n.t('ALERTS.SUCCESS.DELETE_ALL')
+                            );
+                            
+                            // Load the latest insights which includes the new empty state
+                            // but preserves access to historical data
+                            const savedInsights = await InsightsService.getLatestInsights();
+                            if (savedInsights) {
+                                setInsights(savedInsights);
+                            }
+                        } catch (error) {
+                            console.error('Delete all entries failed:', error);
+                            Alert.alert(
+                                i18n.t('COMMON.ERROR'),
+                                i18n.t('ALERTS.ERROR.DELETE_ALL')
+                            );
                         }
                     },
-                },
-                {
-                    text: i18n.t('ALERTS.CONFIRM.NO'),
-                    style: 'cancel',
                 },
             ]
         );
@@ -634,11 +687,21 @@ export default function InsightsScreen() {
             <View style={styles.container}>
                 {/* Export Button */}
                 <TouchableOpacity
-                    style={[extraStyles.exportButton]}
+                    style={[styles.roundButton, styles.roundButtonActive]}
                     onPress={handleExport}
                 >
-                    <Text style={[extraStyles.buttonText]}>
+                    <Text style={styles.buttonText}>
                         {i18n.t('SETTINGS.DATA_MANAGEMENT.EXPORT_DATA')}
+                    </Text>
+                </TouchableOpacity>
+
+                {/* Delete All Entries Button */}
+                <TouchableOpacity
+                    style={[styles.roundButton, styles.roundButtonActive,styles.buttonPrimary]}
+                    onPress={handleDeleteAllEntries}
+                >
+                    <Text style={styles.buttonText}>
+                        {i18n.t('SETTINGS.DATA_MANAGEMENT.DELETE_ALL_ENTRIES')}
                     </Text>
                 </TouchableOpacity>
 

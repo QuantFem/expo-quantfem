@@ -1,83 +1,7 @@
 import db from "@/storage/db";
-import {Activity} from "@/types/types";
+import {Activity, CycleEntry, HealthEntry, Medication, MoodJournal, Nutrition, SleepEntry, Symptom, } from "@/types/types";
 
-// Define interfaces for each entry type
-interface HealthEntry {
-  id: string;
-  date: string;
-  weight?: number;
-  systolic?: number;
-  diastolic?: number;
-  bloodSugar?: number;
-  note?: string;
-}
 
-interface SymptomEntry {
-  id: string;
-  name: string;
-  severity: 'Mild'|'Moderate'|'Severe';
-  notes?: string;
-  startTime: string;
-  endTime?: string;
-  lastUsed?: string;
-}
-
-interface CycleEntry {
-  id: string;
-  startDate: string;
-  endDate?: string;
-  flow?: string;
-  symptoms?: string;
-  mood?: string;
-}
-
-interface Frequency {
-  value: number;
-  unit: "hours"|"days"|"weeks";
-}
-
-interface MedicationEntry {
-  id: string;
-  name: string;
-  startDate: string;
-  endDate?: string;
-  nextDose?: string;
-  dosage?: string;
-  frequency?: Frequency;
-
-}
-
-interface SleepEntry {
-  id: string;
-  date: string;
-  bedTime?: string;
-  wakeTime?: string;
-  sleepQuality?: number;
-}
-
-interface MoodJournal {
-  id?: number;
-  date: string;
-  timestamp: string;
-  mood: string; // emoji
-  notes?: string;
-}
-
-interface Nutrition {
-  id: string;
-  name: string;
-  type: 'Meal'|'Snack'|'Drink';
-  calories: number;
-  protein: number;
-  carbs: number;
-  fat: number;
-  servingSize: number;
-  servingUnit: 'g'|'ml'|'oz'|'piece';
-  consumedAt?: Date;
-  notes: string;
-  favorite: boolean;
-  lastUsed?: Date;
-}
 
 export interface CalendarItem {
   id: string;
@@ -94,9 +18,9 @@ export class CalendarDataService {
 
       // Fetch all necessary entries
       const healthResults=await db.getAllAsync<HealthEntry>("SELECT * FROM health_entries WHERE date IS NOT NULL;");
-      const symptomResults=await db.getAllAsync<SymptomEntry>("SELECT * FROM symptoms WHERE lastUsed IS NOT NULL OR startTime IS NOT NULL;");
+      const symptomResults=await db.getAllAsync<Symptom>("SELECT * FROM symptoms WHERE lastUsed IS NOT NULL OR startTime IS NOT NULL;");
       const cycleResults=await db.getAllAsync<CycleEntry>("SELECT * FROM cycle_entries WHERE startDate IS NOT NULL;");
-      const medicationResults=await db.getAllAsync<MedicationEntry>("SELECT * FROM medications WHERE startDate IS NOT NULL;");
+      const medicationResults=await db.getAllAsync<Medication>("SELECT * FROM medications WHERE startDate IS NOT NULL;");
       const sleepResults=await db.getAllAsync<SleepEntry>("SELECT * FROM sleep_entries WHERE date IS NOT NULL;");
       const activityResults=await db.getAllAsync<Activity>("SELECT * FROM activities WHERE lastUsed IS NOT NULL;");
       const moodResults=await db.getAllAsync<MoodJournal>("SELECT * FROM mood_journals WHERE date IS NOT NULL;");
@@ -106,20 +30,29 @@ export class CalendarDataService {
       healthResults?.forEach(entry => calendarItems.push({
         id: `health-${entry.id}`,
         date: new Date(entry.date),
-        type: 'health',details: {
-          ...entry,weight: entry.weight,
-          systolic: entry.systolic,diastolic: entry.diastolic,
-          bloodSugar: entry.bloodSugar,note: entry.note
+        type: 'health',
+        details: {
+          weight: entry.weight,
+          systolic: entry.systolic,
+          diastolic: entry.diastolic,
+          bloodSugar: entry.bloodSugar,
+          note: entry.note
         }
       }));
 
       symptomResults?.forEach(symptom => {
         calendarItems.push({
           id: `symptom-${symptom.id}`,
-          date: new Date(symptom.startTime),
-          type: 'symptom',details: {
-            ...symptom,severity: symptom.severity,
-            notes: symptom.notes
+          date: new Date(symptom.startTime || new Date()),
+          type: 'symptom',
+          details: {
+            name: symptom.name,
+            severity: symptom.severity,
+            notes: symptom.notes,
+            startTime: symptom.startTime || new Date().toISOString(),
+            endTime: symptom.endTime,
+            favorite: symptom.favorite ? 1 : 0,
+            lastUsed: symptom.lastUsed || new Date().toISOString()
           }
         });
       });
@@ -128,11 +61,32 @@ export class CalendarDataService {
         calendarItems.push({
           id: `cycle-${entry.id}`,
           date: new Date(entry.startDate),
-          type: 'cycle',details: {...entry,flow: entry.flow,symptoms: entry.symptoms,mood: entry.mood}
+          type: 'cycle',
+          details: {
+            startDate: entry.startDate,
+            endDate: entry.endDate,
+            cycleLength: entry.cycleLength,
+            flow: entry.flow,
+            symptoms: entry.symptoms,
+            nextCycleDate: entry.nextCycleDate,
+            mood: entry.mood,
+            remedy: entry.remedy
+          }
         });
         if(entry.endDate) calendarItems.push({
-          id: `cycle-end-${entry.id}`,date: new Date(entry.endDate),
-          type: 'cycle',details: entry
+          id: `cycle-end-${entry.id}`,
+          date: new Date(entry.endDate),
+          type: 'cycle',
+          details: {
+            startDate: entry.startDate,
+            endDate: entry.endDate,
+            cycleLength: entry.cycleLength,
+            flow: entry.flow,
+            symptoms: entry.symptoms,
+            nextCycleDate: entry.nextCycleDate,
+            mood: entry.mood,
+            remedy: entry.remedy
+          }
         });
       });
 
@@ -141,10 +95,14 @@ export class CalendarDataService {
         date: new Date(med.startDate),
         type: 'medication',
         details: {
-          ...med,
+          name: med.name || "Unnamed Medication",
+          dosage: med.dosage || "N/A",
+          frequency: med.frequency || "N/A",
           nextDose: med.nextDose,
-          dosage: med.dosage,
-          frequency: med.frequency
+          notes: med.notes,
+          startDate: med.startDate,
+          endDate: med.endDate,
+          lastTaken: med.lastTaken
         }
       }));
 
@@ -153,24 +111,30 @@ export class CalendarDataService {
         date: new Date(entry.date),
         type: 'sleep',
         details: {
-          ...entry,
+          date: entry.date,
           bedTime: entry.bedTime,
           wakeTime: entry.wakeTime,
-          sleepQuality: entry.sleepQuality
+          sleepQuality: entry.sleepQuality,
+          nightWakeups: entry.nightWakeups,
+          notes: entry.notes
         }
       }));
 
       activityResults?.forEach(activity =>
-        activity.lastUsed&&calendarItems.push({
+        activity.lastUsed && calendarItems.push({
           id: `activity-${activity.id}`,
           date: new Date(activity.lastUsed),
-          type: 'activity',details: {
-            ...activity,
+          type: 'activity',
+          details: {
+            name: activity.name,
+            type: activity.type || "exercise",
             duration: activity.duration,
             startTime: activity.startTime,
             endTime: activity.endTime,
-            intensity: activity.intensity,
-            notes: activity.notes
+            intensity: activity.intensity || "Medium",
+            notes: activity.notes,
+            favorite: activity.favorite ? 1 : 0,
+            lastUsed: activity.lastUsed
           }
         }));
 
@@ -179,21 +143,31 @@ export class CalendarDataService {
           id: `mood-${mood.id}`,
           date: new Date(mood.date),
           type: 'mood',
-          details: {...mood,mood: mood.mood,notes: mood.notes}
+          details: {
+            date: mood.date,
+            timestamp: mood.timestamp || new Date().toISOString(),
+            mood: mood.mood || "😐",
+            notes: mood.notes
+          }
         }));
 
       nutritionResults?.forEach(nutrition => calendarItems.push({
         id: `nutrition-${nutrition.id}`,
-        date: new Date(nutrition.lastUsed??new Date()),
-        type: 'nutrition',details: {
-          ...nutrition,
-          calories: nutrition.calories,
-          protein: nutrition.protein,
-          carbs: nutrition.carbs,
-          fat: nutrition.fat,
-          servingSize: nutrition.servingSize,
-          servingUnit: nutrition.servingUnit,
-          notes: nutrition.notes
+        date: new Date(nutrition.lastUsed || new Date()),
+        type: 'nutrition',
+        details: {
+          name: nutrition.name || "Unknown Food",
+          type: nutrition.type || "Meal",
+          calories: nutrition.calories || 0,
+          protein: nutrition.protein || 0,
+          carbs: nutrition.carbs || 0,
+          fat: nutrition.fat || 0,
+          servingSize: nutrition.servingSize || 1,
+          servingUnit: nutrition.servingUnit || "g",
+          notes: nutrition.notes,
+          favorite: nutrition.favorite ? 1 : 0,
+          consumedAt: nutrition.consumedAt,
+          lastUsed: nutrition.lastUsed || new Date().toISOString()
         }
       }));
 
@@ -275,12 +249,18 @@ export class CalendarDataService {
         break;
 
       case "mood":
-        const existingMood=await db.getFirstAsync("SELECT id FROM mood_journals WHERE id = ?;",[itemId]);
-        if(existingMood) return console.warn(`⚠️ Duplicate mood entry: ${itemId}`);
+        const existingMood = await db.getFirstAsync("SELECT id FROM mood_journals WHERE id = ?;", [itemId]);
+        if (existingMood) return console.warn(`⚠️ Duplicate mood entry: ${itemId}`);
 
         await db.runAsync(
           "INSERT INTO mood_journals (id, date, timestamp, mood, notes) VALUES (?, ?, ?, ?, ?);",
-          [itemId,item.details?.date||item.date.toISOString(),item.details?.timestamp||new Date().toISOString(),item.details?.mood||"Neutral",item.details?.notes||null]
+          [
+            itemId,
+            item.details?.date || item.date.toISOString().split('T')[0],
+            item.details?.timestamp || new Date().toISOString(),
+            item.details?.mood || "😐",
+            item.details?.notes || null
+          ]
         );
         break;
 
@@ -302,6 +282,21 @@ export class CalendarDataService {
     }
   }
 
-
-
+  static async deleteAllEntries(): Promise<void> {
+    try {
+      // Delete from all calendar-related tables while preserving insights
+      await db.runAsync('DELETE FROM health_entries;');
+      await db.runAsync('DELETE FROM symptoms;');
+      await db.runAsync('DELETE FROM cycle_entries;');
+      await db.runAsync('DELETE FROM medications;');
+      await db.runAsync('DELETE FROM sleep_entries;');
+      await db.runAsync('DELETE FROM activities;');
+      await db.runAsync('DELETE FROM mood_journals;');
+      await db.runAsync('DELETE FROM nutrition;');
+      // Do NOT delete from insights table
+    } catch (error) {
+      console.error('Error deleting calendar entries:', error);
+      throw error;
+    }
+  }
 }
