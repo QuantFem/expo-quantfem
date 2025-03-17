@@ -163,6 +163,36 @@ export const SL_STRINGS={
     MEDICATION: {
       ADD: "Add Some Meds",
       NO_DATA: "No meds in the mix",
+      ACTIONS: {
+        EDIT: "Fix This",
+        DELETE: "Yeet",
+        TAKE: "Pop This",
+        STOP: "No Cap",
+        CHANGE: "Switch Up The Dose",
+        RESTART: "Back On That"
+      },
+      LABELS: {
+        NAME: "What's It Called",
+        DOSAGE: "How Much",
+        FREQUENCY: "How Often",
+        TIMETOTAKE: "When To Pop",
+        STARTDATE: "Started From",
+        ENDDATE: "Till When",
+        NOTES: "The Tea",
+        NEXTDOSE: "Next Time To Pop"
+      },
+      ALERTS: {
+        STOPPED_SUCCESS: "Aight, med's on pause fr fr",
+        RESTARTED_SUCCESS: "Back on that med grind, no cap",
+        TAKEN_SUCCESS: "Med popped! Next hit at ",
+        UPDATED_SUCCESS: "Med got that glow up fr",
+        ADDED_SUCCESS: "New med just dropped",
+        UPDATE_FAILED: "Nah fam, update ain't it",
+        SAVE_ERROR: "Bruh moment saving that med",
+        REQUIRED_FIELDS: "Need that name and dose info, bestie",
+        INVALID_INPUT: "This ain't it chief",
+        UNSUPPORTED_FREQUENCY: "That time unit's not bussin"
+      }
     },
     PERIOD: {
       ADD: "Log That Flow",
@@ -289,6 +319,22 @@ export const SL_STRINGS={
     DURATION: "How Long Tho? ⏰",
   },
   INSIGHTS: {
+    TITLE: "The Tea ☕",
+    OVERVIEW: "Quick Stats 📊",
+    TOTAL_ENTRIES: "{{count}} total vibes logged",
+    TRACKING_PERIOD: "Tracking from {{start}} to {{end}}",
+    CATEGORIES: "Vibe Types",
+    TRENDS: "Trend Check 📈",
+    MOST_TRACKED_SYMPTOM: "Most tracked symptom: {{symptom}}",
+    COMMON_MOOD: "Main mood: {{pattern}}",
+    AVG_SLEEP: "Average Zzz's: {{hours}} hours",
+    MED_ADHERENCE: "Med game strong: {{percentage}}%",
+    STREAKS: "Streak Game 🔥",
+    CURRENT_STREAK: "Current streak: {{days}} days",
+    LONGEST_STREAK: "Best streak ever: {{days}} days",
+    LAST_ACTIVITY: "Last vibe: {{time}}",
+    EXPORT_DATA: "Yeet This Data 📤",
+    RESET_DATA: "Start Fresh 🔄",
     CATEGORY_COUNT: {
       SYMPTOMS: "Vibes check count: {{count}}",
       MEDICATIONS: "Med count: {{count}}",

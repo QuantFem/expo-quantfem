@@ -281,8 +281,8 @@ export const ES_STRINGS={
       HEALTH: "Registros de salud: {{count}}"
     },
     TRENDS: "Tendencias y Patrones",
-    MOST_TRACKED_SYMPTOM: "Más registrado: {{symptom}}",
-    COMMON_MOOD: "Estado de ánimo común: {{pattern}}",
+    MOST_TRACKED_SYMPTOM: "Síntoma más registrado: {{symptom}}",
+    COMMON_MOOD: "Estado de ánimo más común: {{pattern}}",
     AVG_SLEEP: "Promedio de sueño: {{hours}} horas",
     MED_ADHERENCE: "Adherencia a medicamentos: {{percentage}}%",
     STREAKS: "Rachas de Actividad",
@@ -319,6 +319,39 @@ export const ES_STRINGS={
       EXPORT: "Error al exportar datos",
       RESET: "Error al reiniciar datos",
     },
+  },
+
+  MEDICATION: {
+    ACTIONS: {
+      EDIT: "Editar",
+      DELETE: "Eliminar",
+      TAKE: "Tomar",
+      STOP: "Detener",
+      CHANGE: "Cambiar Dosis",
+      RESTART: "Reiniciar"
+    },
+    LABELS: {
+      NAME: "Nombre",
+      DOSAGE: "Dosis",
+      FREQUENCY: "Frecuencia",
+      TIMETOTAKE: "Hora de Toma",
+      STARTDATE: "Fecha de Inicio",
+      ENDDATE: "Fecha de Fin",
+      NOTES: "Notas",
+      NEXTDOSE: "Próxima Dosis"
+    },
+    ALERTS: {
+      STOPPED_SUCCESS: "Medicamento detenido con éxito",
+      RESTARTED_SUCCESS: "Medicamento reiniciado con éxito",
+      TAKEN_SUCCESS: "Medicamento tomado. Próxima dosis a las ",
+      UPDATED_SUCCESS: "Medicamento actualizado con éxito",
+      ADDED_SUCCESS: "Medicamento agregado con éxito",
+      UPDATE_FAILED: "Error al actualizar el medicamento",
+      SAVE_ERROR: "Error al guardar el medicamento",
+      REQUIRED_FIELDS: "El nombre y la dosis son obligatorios",
+      INVALID_INPUT: "Entrada inválida",
+      UNSUPPORTED_FREQUENCY: "Unidad de frecuencia no soportada"
+    }
   },
 };
 

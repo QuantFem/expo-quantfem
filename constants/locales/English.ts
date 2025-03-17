@@ -412,8 +412,8 @@ export const EN_STRINGS = {
             HEALTH: "Health entries: {{count}}"
         },
         TRENDS: "Trends & Patterns",
-        MOST_TRACKED_SYMPTOM: "Most tracked: {{symptom}}",
-        COMMON_MOOD: "Common mood: {{pattern}}",
+        MOST_TRACKED_SYMPTOM: "Most tracked symptom: {{symptom}}",
+        COMMON_MOOD: "Most common mood: {{pattern}}",
         AVG_SLEEP: "Average sleep: {{hours}} hours",
         MED_ADHERENCE: "Medication adherence: {{percentage}}%",
         STREAKS: "Activity Streaks",
@@ -462,5 +462,37 @@ export const EN_STRINGS = {
             RESET: "Failed to reset data",
             DELETE_ALL: "Failed to delete entries. Please try again.",
         },
+    },
+    MEDICATION: {
+        ACTIONS: {
+            EDIT: "Edit",
+            DELETE: "Delete",
+            TAKE: "Take",
+            STOP: "Stop",
+            CHANGE: "Change Dosage",
+            RESTART: "Restart"
+        },
+        LABELS: {
+            NAME: "Name",
+            DOSAGE: "Dosage",
+            FREQUENCY: "Frequency",
+            TIMETOTAKE: "Time to Take",
+            STARTDATE: "Start Date",
+            ENDDATE: "End Date",
+            NOTES: "Notes",
+            NEXTDOSE: "Next Dose"
+        },
+        ALERTS: {
+            STOPPED_SUCCESS: "Medication stopped successfully",
+            RESTARTED_SUCCESS: "Medication restarted successfully",
+            TAKEN_SUCCESS: "Medication taken. Next dose at ",
+            UPDATED_SUCCESS: "Medication updated successfully",
+            ADDED_SUCCESS: "Medication added successfully",
+            UPDATE_FAILED: "Failed to update medication",
+            SAVE_ERROR: "Error saving medication",
+            REQUIRED_FIELDS: "Name and dosage are required",
+            INVALID_INPUT: "Invalid input provided",
+            UNSUPPORTED_FREQUENCY: "Unsupported frequency unit"
+        }
     },
 } as const;

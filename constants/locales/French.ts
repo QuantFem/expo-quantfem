@@ -278,8 +278,8 @@ export const FR_STRINGS={
       HEALTH: "Entrées de santé : {{count}}"
     },
     TRENDS: "Tendances et Modèles",
-    MOST_TRACKED_SYMPTOM: "Le plus suivi : {{symptom}}",
-    COMMON_MOOD: "Humeur commune : {{pattern}}",
+    MOST_TRACKED_SYMPTOM: "Symptôme le plus suivi : {{symptom}}",
+    COMMON_MOOD: "Humeur la plus fréquente : {{pattern}}",
     AVG_SLEEP: "Moyenne de sommeil : {{hours}} heures",
     MED_ADHERENCE: "Adhésion aux médicaments : {{percentage}}%",
     STREAKS: "Séries d'Activité",
@@ -315,6 +315,38 @@ export const FR_STRINGS={
       EXPORT: "Échec de l'exportation des données",
       RESET: "Échec de la réinitialisation des données",
     },
+  },
+  MEDICATION: {
+    ACTIONS: {
+      EDIT: "Modifier",
+      DELETE: "Supprimer",
+      TAKE: "Prendre",
+      STOP: "Arrêter",
+      CHANGE: "Changer la Dose",
+      RESTART: "Reprendre"
+    },
+    LABELS: {
+      NAME: "Nom",
+      DOSAGE: "Dosage",
+      FREQUENCY: "Fréquence",
+      TIMETOTAKE: "Heure de Prise",
+      STARTDATE: "Date de Début",
+      ENDDATE: "Date de Fin",
+      NOTES: "Notes",
+      NEXTDOSE: "Prochaine Dose"
+    },
+    ALERTS: {
+      STOPPED_SUCCESS: "Médicament arrêté avec succès",
+      RESTARTED_SUCCESS: "Médicament repris avec succès",
+      TAKEN_SUCCESS: "Médicament pris. Prochaine dose à ",
+      UPDATED_SUCCESS: "Médicament mis à jour avec succès",
+      ADDED_SUCCESS: "Médicament ajouté avec succès",
+      UPDATE_FAILED: "Échec de la mise à jour du médicament",
+      SAVE_ERROR: "Erreur lors de l'enregistrement du médicament",
+      REQUIRED_FIELDS: "Le nom et le dosage sont requis",
+      INVALID_INPUT: "Entrée invalide",
+      UNSUPPORTED_FREQUENCY: "Unité de fréquence non prise en charge"
+    }
   },
 };
 

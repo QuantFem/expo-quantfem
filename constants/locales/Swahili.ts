@@ -269,6 +269,22 @@ export const SW_STRINGS={
   },
 
   INSIGHTS: {
+    TITLE: "Umaizi",
+    OVERVIEW: "Muhtasari",
+    TOTAL_ENTRIES: "Jumla ya maingizo {{count}}",
+    TRACKING_PERIOD: "Kufuatilia kutoka {{start}} hadi {{end}}",
+    CATEGORIES: "Aina",
+    TRENDS: "Mienendo na Mifumo",
+    MOST_TRACKED_SYMPTOM: "Dalili inayofuatiliwa zaidi: {{symptom}}",
+    COMMON_MOOD: "Hali ya kawaida: {{pattern}}",
+    AVG_SLEEP: "Wastani wa usingizi: {{hours}} saa",
+    MED_ADHERENCE: "Uzingatiaji wa dawa: {{percentage}}%",
+    STREAKS: "Mfululizo wa Shughuli",
+    CURRENT_STREAK: "Mfululizo wa sasa: siku {{days}}",
+    LONGEST_STREAK: "Mfululizo mrefu zaidi: siku {{days}}",
+    LAST_ACTIVITY: "Shughuli ya mwisho: {{time}}",
+    EXPORT_DATA: "Hamisha Data",
+    RESET_DATA: "Weka upya Data",
     CATEGORY_COUNT: {
       SYMPTOMS: "Dalili zilizofuatiliwa: {{count}}",
       MEDICATIONS: "Dawa zilizofuatiliwa: {{count}}",
@@ -290,6 +306,39 @@ export const SW_STRINGS={
       HEALTH_MOOD: "{{condition}} inahusishwa na hali ya {{mood}} (mara {{frequency}})",
       WEIGHT_NUTRITION: "{{food}} inahusishwa na mabadiliko ya uzito wa {{change}}kg"
     },
+  },
+
+  MEDICATION: {
+    ACTIONS: {
+      EDIT: "Hariri",
+      DELETE: "Futa",
+      TAKE: "Chukua",
+      STOP: "Simamisha",
+      CHANGE: "Badilisha Kipimo",
+      RESTART: "Anza Upya"
+    },
+    LABELS: {
+      NAME: "Jina",
+      DOSAGE: "Kipimo",
+      FREQUENCY: "Mara ngapi",
+      TIMETOTAKE: "Wakati wa Kuchukua",
+      STARTDATE: "Tarehe ya Kuanza",
+      ENDDATE: "Tarehe ya Kumaliza",
+      NOTES: "Maelezo",
+      NEXTDOSE: "Kipimo Kinachofuata"
+    },
+    ALERTS: {
+      STOPPED_SUCCESS: "Dawa imesimamishwa kwa mafanikio",
+      RESTARTED_SUCCESS: "Dawa imeanza upya kwa mafanikio",
+      TAKEN_SUCCESS: "Dawa imechukuliwa. Kipimo kinachofuata saa ",
+      UPDATED_SUCCESS: "Dawa imesasishwa kwa mafanikio",
+      ADDED_SUCCESS: "Dawa imeongezwa kwa mafanikio",
+      UPDATE_FAILED: "Imeshindwa kusasisha dawa",
+      SAVE_ERROR: "Hitilafu katika kuhifadhi dawa",
+      REQUIRED_FIELDS: "Jina na kipimo vinahitajika",
+      INVALID_INPUT: "Ingizo batili",
+      UNSUPPORTED_FREQUENCY: "Kipimo cha muda hakitumiki"
+    }
   },
 
 };
