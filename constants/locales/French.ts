@@ -269,12 +269,13 @@ export const FR_STRINGS={
     DATE_RANGE: "Données du {{start}} au {{end}}",
     CATEGORIES: "Catégories",
     CATEGORY_COUNT: {
-      SYMPTOMS: "{{count}} symptômes suivis",
-      MEDICATIONS: "{{count}} médicaments gérés",
-      CYCLES: "{{count}} cycles enregistrés",
-      MOODS: "{{count}} entrées d'humeur",
-      SLEEP: "{{count}} enregistrements de sommeil",
-      NUTRITION: "{{count}} journaux de nutrition"
+      SYMPTOMS: "Symptômes suivis : {{count}}",
+      MEDICATIONS: "Médicaments suivis : {{count}}",
+      CYCLES: "Cycles suivis : {{count}}",
+      MOODS: "Humeurs suivies : {{count}}",
+      SLEEP: "Entrées de sommeil : {{count}}",
+      NUTRITION: "Entrées de nutrition : {{count}}",
+      HEALTH: "Entrées de santé : {{count}}"
     },
     TRENDS: "Tendances et Modèles",
     MOST_TRACKED_SYMPTOM: "Le plus suivi : {{symptom}}",
@@ -286,7 +287,19 @@ export const FR_STRINGS={
     LONGEST_STREAK: "Plus longue série : {{days}} jours",
     LAST_ACTIVITY: "Dernière activité : {{time}}",
     EXPORT_DATA: "Exporter les Données",
-    RESET_DATA: "Réinitialiser les Données"
+    RESET_DATA: "Réinitialiser les Données",
+    CORRELATIONS: {
+      TITLE: "Corrélations et Tendances",
+      CYCLE_SYMPTOMS: "{{symptom}} apparaît {{frequency}} fois pendant les cycles",
+      SLEEP_NUTRITION: "{{food}} est associé à une qualité de sommeil de {{quality}}%",
+      MOOD_SYMPTOMS: "{{symptom}} apparaît souvent avec l'humeur {{mood}} ({{frequency}} fois)",
+      ACTIVITY_SLEEP: "{{activity}} est associé à une qualité de sommeil de {{quality}}%",
+      MEDICATION_EFFECT: "{{medication}} réduit les symptômes de {{reduction}}%",
+      ACTIVITY_MOOD: "{{activity}} est associé à l'humeur {{mood}} ({{frequency}} fois)",
+      HEALTH_SYMPTOMS: "{{condition}} est lié à {{symptom}} ({{frequency}} fois)",
+      HEALTH_MOOD: "{{condition}} est associé à l'humeur {{mood}} ({{frequency}} fois)",
+      WEIGHT_NUTRITION: "{{food}} est associé à un changement de poids de {{change}}kg"
+    },
   },
   ALERTS: {
     CONFIRM: {

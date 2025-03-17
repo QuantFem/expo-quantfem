@@ -272,12 +272,13 @@ export const ES_STRINGS={
     DATE_RANGE: "Datos desde {{start}} hasta {{end}}",
     CATEGORIES: "Categorías",
     CATEGORY_COUNT: {
-      SYMPTOMS: "{{count}} síntomas registrados",
-      MEDICATIONS: "{{count}} medicamentos gestionados",
-      CYCLES: "{{count}} ciclos registrados",
-      MOODS: "{{count}} registros de estado de ánimo",
-      SLEEP: "{{count}} registros de sueño",
-      NUTRITION: "{{count}} registros de nutrición"
+      SYMPTOMS: "Síntomas registrados: {{count}}",
+      MEDICATIONS: "Medicamentos registrados: {{count}}",
+      CYCLES: "Ciclos registrados: {{count}}",
+      MOODS: "Estados de ánimo registrados: {{count}}",
+      SLEEP: "Registros de sueño: {{count}}",
+      NUTRITION: "Registros de nutrición: {{count}}",
+      HEALTH: "Registros de salud: {{count}}"
     },
     TRENDS: "Tendencias y Patrones",
     MOST_TRACKED_SYMPTOM: "Más registrado: {{symptom}}",
@@ -289,7 +290,19 @@ export const ES_STRINGS={
     LONGEST_STREAK: "Racha más larga: {{days}} días",
     LAST_ACTIVITY: "Última actividad: {{time}}",
     EXPORT_DATA: "Exportar Datos",
-    RESET_DATA: "Reiniciar Datos"
+    RESET_DATA: "Reiniciar Datos",
+    CORRELATIONS: {
+      TITLE: "Correlaciones y Patrones",
+      CYCLE_SYMPTOMS: "{{symptom}} ocurre {{frequency}} veces durante los ciclos",
+      SLEEP_NUTRITION: "{{food}} está asociado con {{quality}}% de calidad del sueño",
+      MOOD_SYMPTOMS: "{{symptom}} suele ocurrir con estado de ánimo {{mood}} ({{frequency}} veces)",
+      ACTIVITY_SLEEP: "{{activity}} está asociado con {{quality}}% de calidad del sueño",
+      MEDICATION_EFFECT: "{{medication}} reduce los síntomas en un {{reduction}}%",
+      ACTIVITY_MOOD: "{{activity}} está asociado con estado de ánimo {{mood}} ({{frequency}} veces)",
+      HEALTH_SYMPTOMS: "{{condition}} está relacionado con {{symptom}} ({{frequency}} veces)",
+      HEALTH_MOOD: "{{condition}} está asociado con estado de ánimo {{mood}} ({{frequency}} veces)",
+      WEIGHT_NUTRITION: "{{food}} está asociado con un cambio de peso de {{change}}kg"
+    },
   },
 
   ALERTS: {

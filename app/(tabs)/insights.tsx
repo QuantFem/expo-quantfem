@@ -600,12 +600,16 @@ export default function InsightsScreen() {
                     style: 'destructive',
                     onPress: async () => {
                         try {
-                            // Delete all calendar entries but preserve insights
+                            // Save current insights before deletion
+                            if (insights) {
+                                await InsightsService.saveInsights(insights);
+                            }
+                            
+                            // Delete all calendar entries (preserves insights)
                             await CalendarDataService.deleteAllEntries();
                             
-                            // Add a new insights entry to mark the deletion point
-                            // but keep all previous insights for historical reference
-                            const newInsights: InsightsDataInput = {
+                            // Create empty insights for the new state
+                            const emptyInsights: InsightsDataInput = {
                                 totalEntries: 0,
                                 dateRange: {
                                     start: new Date().toISOString(),
@@ -628,7 +632,7 @@ export default function InsightsScreen() {
                                 },
                                 streaks: {
                                     current: 0,
-                                    longest: insights ? insights.streaks.longest : 0, // Preserve longest streak
+                                    longest: 0,
                                     lastActivity: new Date().toISOString()
                                 },
                                 correlations: {
@@ -645,16 +649,15 @@ export default function InsightsScreen() {
                                 }
                             };
                             
-                            // Save the new insights entry while keeping historical ones
-                            await InsightsService.saveInsights(newInsights);
+                            // Save the empty insights state
+                            await InsightsService.saveInsights(emptyInsights);
                             
                             Alert.alert(
                                 i18n.t('COMMON.SUCCESS'),
                                 i18n.t('ALERTS.SUCCESS.DELETE_ALL')
                             );
                             
-                            // Load the latest insights which includes the new empty state
-                            // but preserves access to historical data
+                            // Load the new empty insights
                             const savedInsights = await InsightsService.getLatestInsights();
                             if (savedInsights) {
                                 setInsights(savedInsights);
@@ -701,7 +704,7 @@ export default function InsightsScreen() {
                     onPress={handleDeleteAllEntries}
                 >
                     <Text style={styles.buttonText}>
-                        {i18n.t('SETTINGS.DATA_MANAGEMENT.DELETE_ALL_ENTRIES')}
+                        {i18n.t('ALERTS.CONFIRM.DELETE_ALL')}
                     </Text>
                 </TouchableOpacity>
 

@@ -4,7 +4,7 @@ export const SL_STRINGS={
       TITLE: "Today's Vibes",
       NO_ACTIVITY: "Nada logged today, get on it!",
       QUICK_HINT: "Smash a button to log it real quick. Hit up Trackers for the deep dive.",
-      UPCOMING: "What’s Next:",
+      UPCOMING: "What's Next:",
       HOME_HINT: "Tap any button to log your moves fast. Peep Trackers for details.",
       TRACKERS_HINT: "Click a tracker to edit, delete, or dupe an entry. Quick Log keeps it fresh.",
       CALENDAR_HINT: " Click a day to peep your logs in calendar mode.",
@@ -263,8 +263,8 @@ export const SL_STRINGS={
     NOTE: "Hot Take 📝",
     VALUE: "What's the Score? 🎯",
     UNIT: "How Much? 📏",
-    NAME: "Tag Yo’self 🏷️",
-    TYPE: "What’s the Vibe? 🤔",
+    NAME: "Tag Yo'self 🏷️",
+    TYPE: "What's the Vibe? 🤔",
     CALORIES: "Burn It Up 🔥",
     PROTEIN: "Gainz 💪",
     CARBS: "Bread Count 🍞",
@@ -287,8 +287,29 @@ export const SL_STRINGS={
     LASTTAKEN: "Last Dose? ⏳",
     NEXTDOSE: "Hit Me Next 💉",
     DURATION: "How Long Tho? ⏰",
-  }
-
-
+  },
+  INSIGHTS: {
+    CATEGORY_COUNT: {
+      SYMPTOMS: "Vibes check count: {{count}}",
+      MEDICATIONS: "Med count: {{count}}",
+      CYCLES: "Flow count: {{count}}",
+      MOODS: "Mood ring count: {{count}}",
+      SLEEP: "Zzz count: {{count}}",
+      NUTRITION: "Snack count: {{count}}",
+      HEALTH: "Health check count: {{count}}"
+    },
+    CORRELATIONS: {
+      TITLE: "Vibe Connections ��",
+      CYCLE_SYMPTOMS: "{{symptom}} shows up {{frequency}} times during flow szn",
+      SLEEP_NUTRITION: "{{food}} gives {{quality}}% sleep quality vibes",
+      MOOD_SYMPTOMS: "{{symptom}} hits different with {{mood}} mood ({{frequency}} times)",
+      ACTIVITY_SLEEP: "{{activity}} gives {{quality}}% sleep quality vibes",
+      MEDICATION_EFFECT: "{{medication}} cuts the bad vibes by {{reduction}}%",
+      ACTIVITY_MOOD: "{{activity}} brings that {{mood}} energy ({{frequency}} times)",
+      HEALTH_SYMPTOMS: "{{condition}} links with {{symptom}} ({{frequency}} times)",
+      HEALTH_MOOD: "{{condition}} brings {{mood}} vibes ({{frequency}} times)",
+      WEIGHT_NUTRITION: "{{food}} changes the scale by {{change}}kg"
+    },
+  },
 };
 

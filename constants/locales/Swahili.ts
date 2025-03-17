@@ -268,6 +268,30 @@ export const SW_STRINGS={
     DURATION: "Muda",
   },
 
+  INSIGHTS: {
+    CATEGORY_COUNT: {
+      SYMPTOMS: "Dalili zilizofuatiliwa: {{count}}",
+      MEDICATIONS: "Dawa zilizofuatiliwa: {{count}}",
+      CYCLES: "Mizunguko iliyofuatiliwa: {{count}}",
+      MOODS: "Hali za kihisia zilizofuatiliwa: {{count}}",
+      SLEEP: "Rekodi za usingizi: {{count}}",
+      NUTRITION: "Rekodi za lishe: {{count}}",
+      HEALTH: "Rekodi za afya: {{count}}"
+    },
+    CORRELATIONS: {
+      TITLE: "Uhusiano na Mifumo",
+      CYCLE_SYMPTOMS: "{{symptom}} hutokea mara {{frequency}} wakati wa mizunguko",
+      SLEEP_NUTRITION: "{{food}} inahusishwa na ubora wa usingizi wa {{quality}}%",
+      MOOD_SYMPTOMS: "{{symptom}} huwa inatokea na hali ya {{mood}} (mara {{frequency}})",
+      ACTIVITY_SLEEP: "{{activity}} inahusishwa na ubora wa usingizi wa {{quality}}%",
+      MEDICATION_EFFECT: "{{medication}} hupunguza dalili kwa {{reduction}}%",
+      ACTIVITY_MOOD: "{{activity}} inahusishwa na hali ya {{mood}} (mara {{frequency}})",
+      HEALTH_SYMPTOMS: "{{condition}} inahusiana na {{symptom}} (mara {{frequency}})",
+      HEALTH_MOOD: "{{condition}} inahusishwa na hali ya {{mood}} (mara {{frequency}})",
+      WEIGHT_NUTRITION: "{{food}} inahusishwa na mabadiliko ya uzito wa {{change}}kg"
+    },
+  },
+
 };
 
 

@@ -403,13 +403,13 @@ export const EN_STRINGS = {
         STORAGE_INFO: "Storage used: {{used}}MB / {{available}}MB available",
         CATEGORIES: "Categories",
         CATEGORY_COUNT: {
-            SYMPTOMS: "{{count}} symptoms tracked",
-            MEDICATIONS: "{{count}} medications managed",
-            CYCLES: "{{count}} cycles recorded",
-            MOODS: "{{count}} mood entries",
-            SLEEP: "{{count}} sleep records",
-            NUTRITION: "{{count}} nutrition logs",
-            HEALTH: "{{count}} health metrics"
+            SYMPTOMS: "Symptoms tracked: {{count}}",
+            MEDICATIONS: "Medications tracked: {{count}}",
+            CYCLES: "Cycles tracked: {{count}}",
+            MOODS: "Moods tracked: {{count}}",
+            SLEEP: "Sleep entries: {{count}}",
+            NUTRITION: "Nutrition entries: {{count}}",
+            HEALTH: "Health entries: {{count}}"
         },
         TRENDS: "Trends & Patterns",
         MOST_TRACKED_SYMPTOM: "Most tracked: {{symptom}}",
@@ -430,7 +430,19 @@ export const EN_STRINGS = {
             BP_CHANGE: "Blood pressure change over {{period}}:",
             BP_SYSTOLIC: "Systolic: {{change}} mmHg",
             BP_DIASTOLIC: "Diastolic: {{change}} mmHg"
-        }
+        },
+        CORRELATIONS: {
+            TITLE: "Correlations & Patterns",
+            CYCLE_SYMPTOMS: "{{symptom}} occurs {{frequency}} times during cycles",
+            SLEEP_NUTRITION: "{{food}} is associated with {{quality}}% sleep quality",
+            MOOD_SYMPTOMS: "{{symptom}} often occurs with {{mood}} mood ({{frequency}} times)",
+            ACTIVITY_SLEEP: "{{activity}} is associated with {{quality}}% sleep quality",
+            MEDICATION_EFFECT: "{{medication}} reduces symptoms by {{reduction}}%",
+            ACTIVITY_MOOD: "{{activity}} is associated with {{mood}} mood ({{frequency}} times)",
+            HEALTH_SYMPTOMS: "{{condition}} is related to {{symptom}} ({{frequency}} times)",
+            HEALTH_MOOD: "{{condition}} is associated with {{mood}} mood ({{frequency}} times)",
+            WEIGHT_NUTRITION: "{{food}} is associated with {{change}}kg weight change"
+        },
     },
     ALERTS: {
         CONFIRM: {
