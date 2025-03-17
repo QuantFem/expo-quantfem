@@ -1,5 +1,5 @@
 import { UserService } from "@/storage/UserService";
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useCallback} from "react";
 import {
   View,
   Text,
@@ -14,17 +14,37 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {promptAndScheduleReminder} from "@/components/mycomponents/notifications/homenotification";
 
 
+// Types
+interface InsightEntry {
+  action: string;
+  count: number;
+  nextTime: string | null;
+}
+
 const HomeScreen: React.FC=() => {
   const [history,setHistory]=useState<HistoryEntry[]>([]);
   const styles=useThemedStyles();
 
 
+  const loadHistory = useCallback(async () => {
+    try {
+      const formattedHistory = await UserService.fetchUserLogs();
+      setHistory(formattedHistory);
+    } catch (error) {
+      console.error("❌ Error fetching history:", error);
+    }
+  }, []);
+
+
   useEffect(() => {
     loadHistory();
-  },[history]);
+  }, []); // Remove history dependency to prevent infinite loop
 
 
-  const calculateNextOccurrence=(entry: {action: string; timestamp: string},nextActions: {[key: string]: string}) => {
+  const calculateNextOccurrence = useCallback((
+    entry: { action: string; timestamp: string },
+    nextActions: Record<string, string>
+  ) => {
     const actionIntervals: {[key: string]: number}={
       "Changed Tampon": 4,
       "Changed Pad": 6,
@@ -41,72 +61,9 @@ const HomeScreen: React.FC=() => {
         nextActions[entry.action]=nextChangeDate.toLocaleTimeString([],{hour: '2-digit',minute: '2-digit'});
       }
     }
-  };
+  }, []);
 
-  const logAction=(action: string,reminderFrequency?: number) => {
-    const formattedAction = i18n.t(`HOMEPAGE.ACTION_VERBS.${action.toUpperCase().replace(/\s+/g, '_')}`) || action.toLowerCase();
-
-    const insights=generateInsights();
-    const existingInsight=insights.find(insight => insight.action===action);
-    const nextReminder=existingInsight?.nextTime;
-
-    if(nextReminder) {
-      Alert.alert(
-        i18n.t('ALERTS.CONFIRM.SCHEDULED_ACTION'),
-        i18n.t('ALERTS.CONFIRM.SCHEDULED_MESSAGE', {
-          action: formattedAction,
-          nextReminder
-        }),
-        [
-          {text: i18n.t('ALERTS.CONFIRM.WAIT'), style: "cancel"},
-          {
-            text: i18n.t('ALERTS.CONFIRM.LOG_NOW'),
-            onPress: async () => {
-              await UserService.logUserAction(action);
-              loadHistory();
-            },
-          },
-        ]
-      );
-    } else {
-      Alert.alert(
-        i18n.t('ALERTS.CONFIRM.ACTION'),
-        i18n.t('ALERTS.CONFIRM.MESSAGE', {
-          action: action
-        }),
-        [
-          {text: i18n.t('ALERTS.CONFIRM.CANCEL'), style: "cancel"},
-          {
-            text: i18n.t('ALERTS.CONFIRM.LOG'),
-            onPress: async () => {
-              await UserService.logUserAction(action);
-              loadHistory();
-
-              if(reminderFrequency) {
-                promptAndScheduleReminder({
-                  action,
-                  formattedAction,
-                  reminderFrequency
-                });
-              }
-            },
-          },
-        ]
-      );
-    }
-  };
-
-
-  const loadHistory=async () => {
-    try {
-      const formattedHistory = await UserService.fetchUserLogs();
-      setHistory(formattedHistory);
-    } catch(error) {
-      console.error("❌ Error fetching history:",error);
-    }
-  };
-
-  const generateInsights=() => {
+  const generateInsights = useCallback((): InsightEntry[] => {
     const actionCounts: {[key: string]: number}={};
     const nextActions: {[key: string]: string}={};
 
@@ -132,55 +89,103 @@ const HomeScreen: React.FC=() => {
       count,
       nextTime: nextActions[action]||null, // Ensuring next time is visible
     }));
-  };
+  }, [history, calculateNextOccurrence]);
 
 
 
-  const handleDecrementHistory=async (action: string) => {
-    // Find all matching entries for the action
-    const matchingEntries=history.filter((entry) => entry.action===action);
+  const logAction = useCallback(async (action: string, reminderFrequency?: number) => {
+    const formattedAction = action.toLowerCase();
+    const insights = generateInsights();
+    const existingInsight = insights.find(insight => insight.action === action);
+    const nextReminder = existingInsight?.nextTime;
 
-    if(matchingEntries.length===0) {
-      console.error("❌ Error: No matching entries found for action:",action);
-      Alert.alert("Error","Could not find the activity to decrement.");
+    const handleLog = async () => {
+      await UserService.logUserAction(action);
+      loadHistory();
+
+      if (reminderFrequency) {
+        promptAndScheduleReminder({
+          action,
+          formattedAction,
+          reminderFrequency
+        });
+      }
+    };
+
+    if (nextReminder) {
+      Alert.alert(
+        i18n.t('HOMEPAGE.NOTIFICATIONS.SCHEDULED_TITLE'),
+        i18n.t('HOMEPAGE.NOTIFICATIONS.SCHEDULED_MESSAGE', {
+          action: formattedAction,
+          nextReminder
+        }),
+        [
+          { text: i18n.t('HOMEPAGE.NOTIFICATIONS.WAIT_BUTTON'), style: "cancel" },
+          {
+            text: i18n.t('HOMEPAGE.NOTIFICATIONS.LOG_NOW_BUTTON'),
+            onPress: handleLog,
+          },
+        ]
+      );
+    } else {
+      Alert.alert(
+        i18n.t('HOMEPAGE.NOTIFICATIONS.CONFIRM_TITLE'),
+        i18n.t('HOMEPAGE.NOTIFICATIONS.CONFIRM_MESSAGE', { action }),
+        [
+          { text: i18n.t('HOMEPAGE.NOTIFICATIONS.CANCEL_BUTTON'), style: "cancel" },
+          {
+            text: i18n.t('HOMEPAGE.NOTIFICATIONS.CONFIRM_LOG_BUTTON'),
+            onPress: handleLog,
+          },
+        ]
+      );
+    }
+  }, [generateInsights, loadHistory]);
+
+
+
+  const handleDecrementHistory = useCallback(async (action: string) => {
+    const matchingEntries = history.filter((entry) => entry.action === action);
+
+    if (matchingEntries.length === 0) {
+      console.error("❌ Error: No matching entries found for action:", action);
+      Alert.alert("Error", "Could not find the activity to decrement.");
       return;
     }
 
-    // Find the most recent entry based on timestamp
-    const entryToDelete=matchingEntries.reduce((latest,entry) =>
-      new Date(entry.timestamp)>new Date(latest.timestamp)? entry:latest
+    const entryToDelete = matchingEntries.reduce((latest, entry) =>
+      new Date(entry.timestamp) > new Date(latest.timestamp) ? entry : latest
     );
 
     Alert.alert(
-      i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_TITLE"),
-      i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_MESSAGE", { action: action }),
+      i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_TITLE"),
+      i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_MESSAGE", { action }),
       [
         { text: i18n.t("HOMEPAGE.NOTIFICATIONS.CANCEL_BUTTON"), style: "cancel" },
         {
-          text: i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_CONFIRM"),
+          text: i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_LOG_BUTTON"),
           style: "destructive",
           onPress: async () => {
             const success = await UserService.deleteHistoryEntry(entryToDelete.id);
-
             if (success) {
               setHistory((prevHistory) =>
                 prevHistory.filter((entry) => entry.id !== entryToDelete.id)
               );
               Alert.alert(
                 i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_TITLE"),
-                i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_SUCCESS")
+                i18n.t("HOMEPAGE.NOTIFICATIONS.REMINDER_CANCELLED")
               );
             } else {
               Alert.alert(
                 i18n.t("HOMEPAGE.NOTIFICATIONS.CONFIRM_TITLE"),
-                i18n.t("HOMEPAGE.NOTIFICATIONS.DECREMENT_ERROR")
+                i18n.t("HOMEPAGE.NOTIFICATIONS.REMINDER_CANCELLED")
               );
             }
           },
         },
       ]
     );
-  };
+  }, [history]);
 
 
 

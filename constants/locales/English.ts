@@ -201,7 +201,6 @@ export const EN_STRINGS = {
             TITLE: "Data Management",
             EXPORT_DATA: "Export Data",
             IMPORT_DATA: "Import Data",
-            DELETE_ALL_ENTRIES: "Delete All Entries",
         },
 
         HELP_SUPPORT: {
@@ -417,20 +416,6 @@ export const EN_STRINGS = {
         COMMON_MOOD: "Common mood: {{pattern}}",
         AVG_SLEEP: "Average sleep: {{hours}} hours",
         MED_ADHERENCE: "Medication adherence: {{percentage}}%",
-        CORRELATIONS: {
-            TITLE: "Health Correlations",
-            CYCLE_SYMPTOMS: "During your cycle, {{symptom}} appears {{frequency}} times",
-            SLEEP_NUTRITION: "When you eat {{food}}, your sleep quality is {{quality}}%",
-            MOOD_SYMPTOMS: "When you feel {{mood}}, {{symptom}} appears {{frequency}} times",
-            NUTRITION_SYMPTOMS: "When you eat {{food}}, {{symptom}} appears {{frequency}} times",
-            ACTIVITY_SLEEP: "On days with {{activity}}, your sleep quality is {{quality}}%",
-            MEDICATION_EFFECT: "{{medication}} reduces symptoms by {{reduction}}%",
-            ACTIVITY_MOOD: "{{activity}} often leads to feeling {{mood}} ({{frequency}} times)",
-            HEALTH_SYMPTOMS: "When you have {{condition}}, {{symptom}} appears {{frequency}} times",
-            HEALTH_MOOD: "{{condition}} often relates to feeling {{mood}} ({{frequency}} times)",
-            WEIGHT_NUTRITION: "{{food}} consumption correlates with {{change}}kg weight change",
-            WEIGHT_CYCLE: "Weight tends to {{change}} during your cycle"
-        },
         STREAKS: "Activity Streaks",
         CURRENT_STREAK: "Current streak: {{days}} days",
         LONGEST_STREAK: "Longest streak: {{days}} days",
