@@ -55,13 +55,7 @@ export default function TabsLayout() {
             }}
           />
 
-          <Tabs.Screen
-            name="insights"
-            options={{
-              title: "Insights",
-              tabBarIcon: ({color}) => <TabBarIcon name="line-chart" color={color} />,
-            }}
-          />
+          
           <Tabs.Screen
             name="trackers"
             options={{

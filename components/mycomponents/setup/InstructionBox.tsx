@@ -31,7 +31,7 @@ const InstructionBox: React.FC = () => {
           <Text style={styles.text}>{instructionMessages[pathname]}</Text>
         </View>
       )}
-      <TouchableOpacity onPress={() => setVisible(!visible)} style={[styles.roundButton, styles.roundButtonActive]}>
+      <TouchableOpacity onPress={() => setVisible(!visible)} style={[styles.roundButton, styles.roundButtonActive, styles.buttonPrimary]}>
         <Text style={styles.text}>
           <Icon name="lightbulb-on-outline" size={30}  />
         </Text>
