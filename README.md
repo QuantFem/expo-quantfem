@@ -155,55 +155,83 @@ Generate comprehensive reports including:
 - Node.js (v14 or higher)
 - npm or yarn
 - Expo CLI
-- iOS Simulator (for iOS development)
-- Android Studio (for Android development)
-- Xcode 14+ (for iOS development)
-- Android SDK 33+ (for Android development)
+- Expo Go app on your mobile device
+- Expo account (for development)
 
-### Installation
+### Installation and Setup
+
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/quantfem.git
-cd quantfem
+git clone https://github.com/QuantFem/expo-quantfem.git
+cd expo-quantfem
 ```
 
-2. Install dependencies
+2. Install dependencies and fix potential issues
 ```bash
 npm install
-# or
-yarn install
+
+# Fix any dependency issues if they occur
+npm audit fix
 ```
 
-3. Start the development server
+3. Run Expo Doctor to check for common issues
+```bash
+npx expo-doctor
+
+# Fix any issues reported by expo-doctor
+```
+
+4. Configure EAS Platform
+```bash
+npx eas platform
+
+# Follow the prompts to set up your development environment
+```
+
+5. Start the development server
 ```bash
 npm start
 # or
-yarn start
+expo start
 ```
 
-### Building for Production
-1. Configure app.json with your app details
-2. Build for iOS
+6. Run on your device:
+   - Install Expo Go from App Store (iOS) or Play Store (Android)
+   - Scan the QR code shown in the terminal with:
+     - iOS: Use your phone's camera
+     - Android: Use the Expo Go app's QR scanner
+
+### Troubleshooting
+
+If you encounter any issues:
+
+1. Run the check command to diagnose problems:
 ```bash
-eas build --platform ios
+npx expo-doctor --fix-dependencies
 ```
 
-3. Build for Android
-```bash
-eas build --platform android
-```
+2. Common Issues and Solutions:
+   - Connection issues: Ensure your phone and computer are on the same network
+   - Expo Go issues: Try clearing Expo Go cache or reinstalling
+   - Metro bundler issues: Clear metro cache with `npx expo start --clear`
+   - Platform-specific issues: Run `npx eas platform` to reconfigure
 
-### Testing
+3. Development Environment Verification:
 ```bash
-npm test
-# or
-yarn test
+# Verify Expo CLI installation
+npx expo --version
+
+# Check for platform-specific requirements
+npx eas platform check
+
+# Verify development environment
+npx expo-doctor
 ```
 
 ### Platform-Specific Testing
 The app has been thoroughly tested on:
-- iOS 15.0+ (iPhone 12, 13, 14, 15 series)
-- Android 11+ (Samsung Galaxy S21+, Google Pixel 6, OnePlus 9)
+- iOS 15.0+ (iPhone 12, 13, 14, 15 series) using Expo Go
+- Android 11+ (Samsung Galaxy S21+, Google Pixel 6, OnePlus 9) using Expo Go
 
 #### Known Issues and Limitations
 

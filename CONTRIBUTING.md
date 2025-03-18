@@ -9,7 +9,7 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
 ## Development Setup
 
 1. **Fork the Repository**
-   - Go to https://github.com/yourusername/quantfem
+   - Go to https://github.com/QuantFem/expo-quantfem
    - Click the "Fork" button in the top right
    - Clone your fork locally
 
@@ -17,12 +17,58 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
    ```bash
    # Install dependencies
    npm install
-   
+
+   # Fix any dependency issues
+   npm audit fix
+
+   # Run Expo Doctor to check for issues
+   npx expo-doctor
+
+   # Configure EAS Platform
+   npx eas platform
+
    # Start development server
    npm start
    ```
 
-3. **Create a Branch**
+3. **Set Up Expo Go**
+   - Install Expo Go from App Store (iOS) or Play Store (Android)
+   - Ensure your phone and computer are on the same network
+   - Scan the QR code:
+     - iOS: Use your phone's camera
+     - Android: Use Expo Go's QR scanner
+
+4. **Verify Setup**
+   ```bash
+   # Check development environment
+   npx expo-doctor
+
+   # Verify platform requirements
+   npx eas platform check
+   ```
+
+5. **Troubleshooting Common Issues**
+   - If you encounter connection issues:
+     ```bash
+     # Try using tunnel connection
+     npx expo start --tunnel
+     ```
+   - For Expo Go issues:
+     - Clear Expo Go cache
+     - Reinstall Expo Go
+     - Check network connection
+   - For metro bundler issues:
+     ```bash
+     # Clear metro cache
+     npx expo start --clear
+     ```
+   - For platform-specific issues:
+     ```bash
+     # Reconfigure platform setup
+     npx eas platform
+     ```
+
+6. **Create a Branch**
    ```bash
    git checkout -b feature/your-feature-name
    # or
