@@ -215,4 +215,25 @@ Contributors will be recognized in:
 - Release notes
 - Documentation
 
+## License and Usage Rights
+
+By contributing to this project, you agree that your contributions will be licensed under the QuantFem Proprietary License. This means:
+
+1. **Non-Commercial Use Only**
+   - Your contributions can be used for non-commercial purposes
+   - Commercial use requires explicit permission from QuantFem
+
+2. **Contribution Agreement**
+   - You confirm you have the right to submit the contributions
+   - You grant QuantFem the right to use your contributions
+   - You understand your code may be used in commercial versions
+
+3. **No Guarantee of Commercial Access**
+   - Contributing does not grant commercial usage rights
+   - Commercial licensing must be arranged separately
+
+4. **Attribution**
+   - Your contributions will be credited in the project
+   - You may be listed in project documentation
+
 Thank you for contributing to QuantFem! 

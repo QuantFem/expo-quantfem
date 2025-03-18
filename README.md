@@ -324,7 +324,17 @@ We welcome contributions! Please read our contributing guidelines before submitt
 5. Create a Pull Request
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the QuantFem Proprietary License. 
+
+**Important License Terms:**
+- Free for non-commercial use (personal, academic, research)
+- Commercial use requires explicit written permission
+- Redistribution allowed only for non-commercial purposes
+- Modified versions must be clearly marked
+- QuantFem name and trademarks protected
+
+For commercial licensing inquiries, please contact:
+[Contact Information for Commercial Licensing]
 
 ## Support
 For support, please open an issue in the GitHub repository or contact the maintainers.

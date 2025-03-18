@@ -1,21 +1,36 @@
-MIT License
+QuantFem Proprietary License
 
 Copyright (c) 2024 QuantFem
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+All rights reserved.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use the Software for non-commercial purposes only, subject to the following conditions:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE. 
+1. Non-Commercial Use
+   The Software may be used for personal, academic, research, or other non-commercial purposes only. Any commercial use, including but not limited to:
+   - Selling the Software or derivatives of it
+   - Using the Software in a commercial product
+   - Using the Software to provide commercial services
+   requires explicit written permission from QuantFem.
+
+2. Redistribution
+   - Redistribution of the source code is allowed only for non-commercial purposes
+   - Any redistribution must retain this license notice
+   - Modified versions must be clearly marked as such
+   - You may not use the QuantFem name or trademarks without written permission
+
+3. Commercial Licensing
+   For commercial use of this Software, please contact:
+   [Contact Information for Commercial Licensing]
+
+4. Contributions
+   Any contributions to the Software will be subject to this license.
+
+5. Disclaimer
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+6. Termination
+   This license automatically terminates if you violate any of these restrictions and may be terminated by QuantFem at any time.
+
+For permissions beyond the scope of this license, please contact:
+[QuantFem Contact Information] 
